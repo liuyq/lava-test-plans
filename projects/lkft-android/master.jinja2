@@ -1,0 +1,67 @@
+{% extends "testcases/android/master.jinja2" %}
+
+{% set common_tests_after_boot_timeout = common_tests_after_boot_timeout|default(20) %}
+
+{% set lava_job_name = "lkft-android-" + KERNEL_BRANCH + '-' + BUILD_NUMBER + '-' + job_name %}
+{% set LAVA_JOB_PRIORITY = TEST_LAVA_JOB_PRIORITY %}
+
+{########## LAVA JOB DEFINITION ##############}
+{% block visibility %}
+  group:
+    - {{TEST_LAVA_JOB_GROUP}}
+{% endblock visibility %}
+
+{% block metadata %}
+  android.build: "{{BUILD_NUMBER}}"
+  android.name: "{{JOB_NAME}}"
+  android.url: "{{REFERENCE_BUILD_URL}}"
+  android.version: "{{ANDROID_VERSION}}"
+{% if ANDROID_VENDOR_FINGERPRINT is defined %}
+  android.build.vendor.fingerprint: "{{ANDROID_VENDOR_FINGERPRINT}}"
+{% endif %}
+{% if ANDROID_GSI_FINGERPRINT is defined %}
+  android.build.gsi.url: "{{ANDROID_GSI_URL}}"
+  android.build.gsi.fingerprint: "{{ANDROID_GSI_FINGERPRINT}}"
+{% endif %}
+{% if TUXSUITE_DOWNLOAD_URL is defined %}
+  tuxsuite.download.url: "{{TUXSUITE_DOWNLOAD_URL}}"
+{% endif %}
+  lkft.build.config: "{{LKFT_BUILD_CONFIG}}"
+  git branch: "{{KERNEL_BRANCH}}"
+  git repo: "{{KERNEL_REPO}}"
+  git commit: "{{KERNEL_COMMIT}}"
+  git describe: "{{KERNEL_DESCRIBE}}"
+  build-url: "{{BUILD_URL}}"
+  toolchain: "{{TEST_METADATA_TOOLCHAIN}}"
+  series: lkft
+{% block job_specific_metadata %}
+{% endblock job_specific_metadata %}
+{% endblock metadata %}
+
+{% block secrets %}
+secrets:
+  ARTIFACTORIAL_TOKEN: "{{ARTIFACTORIAL_TOKEN}}"
+{% endblock %}
+
+{% block job_name %}{{lava_job_name}}{% endblock %}
+
+{% block test_common_actions_after_boot %}
+{% with test_timeout=common_tests_after_boot_timeout %}
+{% include "include/test_target.jinja2" %}
+{% endwith %}
+    - from: inline
+      path: android-boot.yaml
+      name: android-boot
+      repository:
+        metadata:
+          format: Lava-Test Test Definition 1.0
+          name: android-boot
+          description: "android-boot"
+        run:
+          steps:
+            - lava-test-case "android-boot-sleep-30secs" --shell sleep 30
+            - lava-test-case "android-boot-lsusb-v" --shell lsusb -v
+            - lava-test-case "android-boot-boot-completed" --shell "while ! adb shell getprop sys.boot_completed|grep 1; do sleep 2; done"
+            - lava-test-case "android-boot-set-power-stayon" --shell adb shell su 0 svc power stayon true
+            - lava-test-case "android-boot-screencap" --shell adb shell screencap -p /data/local/tmp/screencap.png
+{% endblock test_common_actions_after_boot %}

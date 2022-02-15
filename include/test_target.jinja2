@@ -1,5 +1,9 @@
 {% if enable_tests is defined and enable_tests %}
 - test:
+{% if DOCKER_IMAGE is defined %}
+    docker:
+      image: {{DOCKER_IMAGE}}
+{% endif %}
 {% if lxc_project == true %}
     namespace: target
 {% endif %}

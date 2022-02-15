@@ -1,0 +1,7 @@
+{% extends "testcases/android/vts.yaml" %}
+
+{% set test_timeout = 480 %}
+{% set job_name = "vts-kernel-arm64-v8a" %}
+
+
+{% block vts_test_params %}vts-kernel --abi arm64-v8a{% endblock vts_test_params %}

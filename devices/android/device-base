@@ -1,0 +1,47 @@
+{% set PROJECT = PROJECT|default("testcases/android/") %}
+{% extends PROJECT + "master.jinja2" %}
+
+{% set partitions_urls = partitions_urls|default({}) %}
+{% set partitions_names = partitions_names|default({}) %}
+{% set download_timeout = download_timeout |default(10) %}
+
+{% block download_target %}
+{% if partitions_urls %}
+- deploy:
+    timeout:
+      minutes: {{download_timeout}}
+    to: downloads
+    images:
+      {% block partitions_urls %}
+      {% for partition in partitions_urls %}
+      {{partition}}:
+        url: {{partitions_urls[partition]}}
+        {% if partitions_urls[partition].endswith("xz") %}
+        compression: xz
+        {% endif %}
+      {% endfor %}
+      {% endblock partitions_urls %}
+{% endif %}
+{% endblock download_target %}
+
+{% block deploy_target %}
+{% if partitions_names %}
+- deploy:
+    timeout:
+      minutes: {{deploy_timeout}}
+    to: fastboot
+    docker:
+      image: {{DOCKER_IMAGE}}
+    images:
+      {% block partitions_names %}
+      {% for partition in partitions_names %}
+      {{partition}}:
+        url: downloads://{{partitions_names[partition]}}
+      {% endfor %}
+      {% endblock partitions_names %}
+{% endif %}
+{% endblock deploy_target %}
+
+{% block boot_target %}
+{% include "include/boot_target/android-boot.jinja2" %}
+{% endblock boot_target %}

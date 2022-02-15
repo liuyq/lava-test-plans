@@ -1,0 +1,9 @@
+- boot:
+    docker:
+      image: {{DOCKER_IMAGE}}
+    method: fastboot
+    prompts:
+    - 'root@(.*):/#'
+    - 'console:/'
+    timeout:
+      minutes: {{TARGET_BOOT_TIMEOUT}}

@@ -1,0 +1,11 @@
+{% extends device_type %}
+
+{% set test_timeout = 30 %}
+{% set job_name = "boot" %}
+
+
+{% block test_target_definitions %}
+{% with test_name="boottime-test" %}
+{% include "include/android-boottime-definition.jinja2" %}
+{% endwith %}
+{% endblock test_target_definitions %}

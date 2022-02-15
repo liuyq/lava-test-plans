@@ -1,0 +1,51 @@
+{% extends "master.jinja2" %}
+
+{# timeouts #}
+{% set download_timeout = download_timeout|default(10) %}
+{% set between_download_deploy_timeout = between_download_deploy_timeout|default(0) %}
+{% set deploy_timeout = deploy_timeout|default(25) %}
+{% set between_deploy_boot_timeout = between_deploy_boot_timeout|default(0) %}
+{% set TARGET_BOOT_TIMEOUT = TARGET_BOOT_TIMEOUT|default(10) %}
+{% set common_tests_after_boot_timeout = common_tests_after_boot_timeout|default(0) %}
+
+{# urls #}
+{% set DOCKER_IMAGE = DOCKER_IMAGE|default("yongqinliu/linaro-android-docker:0.1") %}
+
+{# variables needs to be converted to be used by the root master.jinja2 #}
+{% set LAVA_JOB_PRIORITY = LAVA_JOB_PRIORITY|default("medium") %}
+{% set lava_job_name = lava_job_name|default("android-base") %}
+{% set test_timeout = test_timeout|default(10) %}
+
+{# target_deploy_timeout is used to calculate the job_timeout defined in the root master.jinja2 file #}
+{# for android the variables of download_timeout, deploy_timeout, between_deploy_boot_timeout are used in the file devices/android/device-base#}
+{# common_tests_after_boot_timeout needs to be defined when there are common actions defined after the boot, but before the real tests started#}
+{% set target_deploy_timeout = download_timeout + between_download_deploy_timeout + deploy_timeout + between_deploy_boot_timeout + common_tests_after_boot_timeout %}
+
+{########## LAVA JOB DEFINITION ##############}
+{########## DEFINE COMMON BLOCKS  ##############}
+{% block actions %}
+
+{% block download_target %}
+{% endblock download_target %}
+
+{% block actions_between_download_deploy %}
+{% endblock actions_between_download_deploy %}
+
+{% block deploy_target %}
+{% endblock deploy_target %}
+
+{% block actions_between_deploy_boot %}
+{% endblock actions_between_deploy_boot %}
+
+{% block boot_target %}
+{% endblock boot_target %}
+
+{% block test_common_actions_after_boot %}
+{% endblock test_common_actions_after_boot %}
+
+{% block test_target %}
+{% include "include/test_target.jinja2" %}
+    {% block test_target_definitions %}{% endblock test_target_definitions %}
+{% endblock test_target %}
+
+{% endblock actions %}
