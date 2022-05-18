@@ -1,0 +1,19 @@
+{% extends "testcases/master/template-android.jinja2" %}
+
+{% set test_name = test_name|default("cts") %}
+{% set cts_test_params = cts_test_params|default("cts") %}
+
+{% block test_target_definitions %}
+{% if TEST_CTS_URL is defined %}
+    - repository: {{TEST_DEFINITIONS_REPOSITORY}}
+      from: git
+      path: automated/android/noninteractive-tradefed/tradefed.yaml
+      params:
+        TEST_PARAMS: {% block cts_test_params %}{{cts_test_params}} {% endblock cts_test_params %}
+        TEST_URL: "{{TEST_CTS_URL}}/android-cts.zip"
+        TEST_PATH: "android-cts"
+        RESULTS_FORMAT: "aggregated"
+        ANDROID_VERSION: "{{ANDROID_VERSION}}"
+      name: "cts-lkft"
+{% endif %}
+{% endblock test_target_definitions %}

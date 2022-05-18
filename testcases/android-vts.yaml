@@ -1,0 +1,20 @@
+{% extends "testcases/master/template-android.jinja2" %}
+
+{% set test_name = test_name|default("vts") %}
+{% set vts_test_params = vts_test_params|default("vts") %}
+
+{% block test_target_definitions %}
+{% if TEST_VTS_URL is defined %}
+    - repository: {{TEST_DEFINITIONS_REPOSITORY}}
+      from: git
+      path: automated/android/noninteractive-tradefed/tradefed.yaml
+      params:
+        TEST_PARAMS: {% block vts_test_params %}{{vts_test_params}}{% endblock vts_test_params %}
+        TEST_URL: "{{TEST_VTS_URL}}/android-vts.zip"
+        TEST_PATH: "android-vts"
+        RESULTS_FORMAT: "aggregated"
+        ANDROID_VERSION: "{{ANDROID_VERSION}}"
+        TEST_REBOOT_EXPECTED: "true"
+      name: vts-test
+{% endif %}
+{% endblock test_target_definitions %}
