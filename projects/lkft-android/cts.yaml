@@ -1,0 +1,8 @@
+{% extends "testcases/android-cts.yaml" %}
+
+{% block job_specific_metadata %}
+  cts-url: "{{TEST_CTS_URL}}/android-cts.zip"
+  cts-manifest: "{{TEST_CTS_URL}}/pinned-manifest.xml"
+  cts-version: "{{TEST_CTS_VERSION}}"
+  cts-plan: "cts-lkft"
+{% endblock job_specific_metadata %}
