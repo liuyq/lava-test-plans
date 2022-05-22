@@ -19,6 +19,7 @@
 {% set auto_login = auto_login|default(true) %}
 {% set boot_method = boot_method|default("fastboot") %}
 {% set download_postprocess_required = download_postprocess_required|default(true) %}
+{% set use_docker_image_for_boot = use_docker_image_for_boot|default(false) %}
 
 {# partitions for android jobs #}
 {% set partition_boot_a = partition_boot_a|default(false) %}
@@ -228,6 +229,10 @@ reboot_to_fastboot: {{ reboot_to_fastboot }}
 - boot:
 {% if lxc_project == true %}
     namespace: target
+{% endif %}
+{% if use_docker_image_for_boot == true %}
+    docker:
+      image: {{ DOCKER_IMAGE }}
 {% endif %}
 {% block boot_commands %}
 {% endblock boot_commands %}
