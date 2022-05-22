@@ -1,0 +1,38 @@
+{% extends "devices/hi6220-hikey" %}
+
+{% set pre_boot_timeout = pre_boot_timeout|default(5) %}
+
+{% set auto_login = auto_login|default(false) %}
+{% set boot_method = boot_method |default("fastboot") %}
+{% set BOOT_OS_PROMPT = ["console:/"] %}
+{% set pre_boot_command = true %}
+{% set pre_os_command = false %}
+{% set pre_power_command = false %}
+{% set post_boot_command = false %}
+{% set rootfs = false %}
+
+{% set ptable = true %}
+{% set PTABLE_LABEL = PTABLE_LABEL|default("ptable") %}
+{% set DOCKER_PTABLE_FILE = DOCKER_PTABLE_FILE|default("ptable-aosp-8g.img") %}
+{% set PTABLE_URL = PTABLE_URL|default("http://images.validation.linaro.org/snapshots.linaro.org/96boards/reference-platform/components/uefi-staging/69/hikey/release/ptable-aosp-8g.img") %}
+{% set partition_system = true %}
+{% set partition_vendor = true %}
+{% set partition_userdata = partition_userdata|default(true) %}
+
+{# override the blocks defined in "devices/hi6220-hikey" #}
+{% block auto_login_commands %}
+{% endblock auto_login_commands %}
+{% block boot_commands %}
+{% endblock boot_commands %}
+
+{# override the one defined in projects/lkft-android/fastboot.jinja2 #}
+{% block settings %}
+  {{ super() }}
+  AP_SSID: "{{AP_SSID}}"
+  AP_KEY: "{{AP_KEY}}"
+{% endblock settings %}
+
+{# override the test_target block defined in "devices/hi6220-hikey" #}
+{% block test_target %}
+{% include "include/test_target.jinja2" %}
+{% endblock test_target %}
