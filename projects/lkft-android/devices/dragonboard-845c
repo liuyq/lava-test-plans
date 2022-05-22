@@ -1,0 +1,72 @@
+{% extends "devices/dragonboard-845c" %}
+
+{% set TAGS = TAGS|default(["lcg"]) %}
+{% set pre_boot_timeout = pre_boot_timeout |default(10) %}
+
+{% set auto_login = auto_login|default(false) %}
+{% set boot_method = boot_method |default("fastboot") %}
+{% set BOOT_OS_PROMPT = ["console:/"] %}
+{% set ptable = true %}
+{% set pre_boot_command = true %}
+{% set pre_os_command = false %}
+{% set pre_power_command = false %}
+{% set post_boot_command = false %}
+{% set rootfs = false %}
+
+{% set PTABLE_LABEL = PTABLE_LABEL|default("partition:0") %}
+{% set DOCKER_PTABLE_FILE = DOCKER_PTABLE_FILE|default("gpt_both0.bin") %}
+{% set PTABLE_URL = PTABLE_URL|default("https://images.validation.linaro.org/snapshots.linaro.org/96boards/dragonboard845c/linaro/rescue/90/dragonboard-845c-bootloader-ufs-aosp-90/gpt_both0.bin
+") %}
+{% set partition_super = partition_super|default(true) %}
+{% set partition_userdata = partition_userdata|default(true) %}
+{% if IMAGE_SUPPORTED_VENDOR_BOOT is defined and IMAGE_SUPPORTED_VENDOR_BOOT == "true" %}
+    {% set partition_vendor_boot = true %}
+{% endif%}
+
+{# override the one defined in projects/lkft-android/fastboot.jinja2 #}
+{% block settings %}
+  {{ super() }}
+  AP_SSID: "{{AP_SSID}}"
+  AP_KEY: "{{AP_KEY}}"
+{% endblock settings %}
+
+{% block pre_boot_command %}
+{% with test_timeout=5 %}
+{% include "include/test_target.jinja2" %}
+{% endwith %}
+    - from: inline
+      path: format-metatdata.yaml
+      name: format-metatdata
+      repository:
+        metadata:
+          format: Lava-Test Test Definition 1.0
+          name: format-metatdata
+          description: format-metatdata
+        run:
+          steps:
+          - lava-test-case "format-metadata" --shell fastboot format:ext4 metadata
+
+{% with test_timeout=5 %}
+{% include "include/test_target.jinja2" %}
+{% endwith %}
+    - from: inline
+      path: select-display-panel.yaml
+      name: select-display-panel
+      repository:
+        metadata:
+          format: Lava-Test Test Definition 1.0
+          name: select-display-panel
+          description: select-display-panel
+        run:
+          steps:
+          - lava-test-case "select-display-panel-1" --shell fastboot oem select-display-panel
+            hdmi
+          - lava-test-case "reboot-bootloader-1" --shell fastboot reboot bootloader
+          - lava-test-case "select-display-panel-2" --shell fastboot oem select-display-panel
+            hdmi
+          - lava-test-case "reboot-bootloader-2" --shell fastboot reboot bootloader
+          - lava-test-case "select-display-panel-3" --shell fastboot oem select-display-panel
+            hdmi
+          - lava-test-case "reboot" --shell fastboot reboot
+
+{% endblock pre_boot_command %}
