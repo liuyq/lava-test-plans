@@ -1,0 +1,57 @@
+{% extends "devices/hi960-hikey" %}
+
+{% set TAGS = TAGS|default(["old-firmware"]) %}
+{% set pre_boot_timeout = pre_boot_timeout |default(5) %}
+
+{% set auto_login = auto_login|default(false) %}
+{% set boot_method = boot_method |default("fastboot") %}
+{% set BOOT_OS_PROMPT = ["console:/"] %}
+{% set ptable = true %}
+{% set pre_boot_command = true %}
+{% set pre_os_command = false %}
+{% set pre_power_command = false %}
+{% set post_boot_command = false %}
+{% set rootfs = false %}
+
+
+{% set PTABLE_LABEL = PTABLE_LABEL|default("ptable") %}
+{% set DOCKER_PTABLE_FILE = DOCKER_PTABLE_FILE|default("prm_ptable.img") %}
+{% if HIKEY960_SUPPORT_SUPER is defined and HIKEY960_SUPPORT_SUPER == "true"%}
+{% set partition_super = true %}
+{% set PTABLE_URL = PTABLE_URL|default("https://staging-git.codelinaro.org/linaro/linaro-aosp/aosp-linaro-vendor-package/-/raw/main/src/hikey960/bootloader/prm_ptable.img") %}
+{% else %}
+{% set partition_system = true %}
+{% set partition_vendor = true %}
+{% set PTABLE_URL = PTABLE_URL|default("https://images.validation.linaro.org/snapshots.linaro.org/96boards/reference-platform/components/uefi-staging/85/hikey960/release/prm_ptable.img") %}
+{% endif %}
+{% set partition_userdata = partition_userdata|default(true) %}
+
+{# override the boot_commands block defined in "devices/hi960-hikey" #}
+{% block boot_commands %}
+{% endblock boot_commands %}
+
+{# override the one defined in projects/lkft-android/fastboot.jinja2 #}
+{% block settings %}
+  {{ super() }}
+  AP_SSID: "{{AP_SSID}}"
+  AP_KEY: "{{AP_KEY}}"
+{% endblock settings %}
+
+{% block pre_boot_command %}
+{% with test_timeout=pre_boot_timeout%}
+{% include "include/test_target.jinja2" %}
+{% endwith %}
+    - from: inline
+      path: format-metatdata.yaml
+      name: format-metatdata
+      repository:
+        metadata:
+          format: Lava-Test Test Definition 1.0
+          name: format-metatdata
+          description: format-metatdata
+        run:
+          steps:
+          - lava-test-case "fastboot-format-metadata" --shell fastboot format cache
+          - lava-test-case "fastboot-reboot-bootloader" --shell fastboot reboot bootloader
+
+{% endblock pre_boot_command %}
