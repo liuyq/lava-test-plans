@@ -24,6 +24,11 @@
     - {{ TEST_LAVA_JOB_GROUP }}
 {% endblock visibility %}
 
+{% block settings %}
+secrets:
+  ARTIFACTORIAL_TOKEN: "{{ ARTIFACTORIAL_TOKEN }}"
+{% endblock settings %}
+
 {% block deploy_target %}
 {{ super() }}
 
