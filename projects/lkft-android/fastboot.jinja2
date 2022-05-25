@@ -29,6 +29,12 @@ secrets:
   ARTIFACTORIAL_TOKEN: "{{ ARTIFACTORIAL_TOKEN }}"
 {% endblock settings %}
 
+{% block metadata %}
+{% include PROJECT+"include/metadata.jinja2" %}
+{% block job_specific_metadata %}
+{% endblock job_specific_metadata %}
+{% endblock metadata %}
+
 {% block deploy_target %}
 {{ super() }}
 
