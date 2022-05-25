@@ -1,0 +1,21 @@
+{% extends "testcases/master/template-android.jinja2" %}
+
+{% set test_timeout = test_timeout|default(160) %}
+{% set benchmark_name = benchmark_name|default("benchmarkpi") %}
+{% set test_name = "benchmark" + benchmark_name %}
+
+{% block test_target_definitions %}
+        - repository: {{TEST_DEFINITIONS_REPOSITORY}}
+          from: git
+          path: automated/android/apk-automation/apk-automation.yaml
+          name: {{benchmark_name}}
+          params:
+            SET_GOVERNOR_POLICY: "false"
+            TEST_NAME: {{benchmark_name}}
+{% if loopcount is defined %}
+            LOOPS: {{loopcount}}
+{% else %}
+            LOOPS: 1
+{% endif %}
+
+{% endblock test_target_definitions %}
