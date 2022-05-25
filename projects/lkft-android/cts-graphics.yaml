@@ -1,0 +1,11 @@
+{% extends "projects/lkft-android/cts.yaml" %}
+
+{% set test_timeout = 1200 %}
+{% set test_name = "cts-graphics" %}
+{% set cts_test_plan = "cts" %}
+
+{% block cts_test_params %}cts
+                --include-filter CtsGraphicsTestCases
+                --include-filter CtsGraphicsTestCases[instant]
+                --disable-reboot
+{% endblock cts_test_params %}
