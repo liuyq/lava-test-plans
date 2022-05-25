@@ -1,0 +1,13 @@
+{% extends "projects/lkft-android/cts.yaml" %}
+
+{% set test_timeout = 480 %}
+{% set test_name = "cts-presubmit-armeabi-v7a" %}
+{% set cts_test_plan = "cts-presubmit" %}
+
+{% block cts_test_params %}cts-presubmit --abi armeabi-v7a
+                --exclude-filter CtsDeqpTestCases
+                --exclude-filter CtsLibcoreOjTestCases
+                --exclude-filter CtsKeystoreTestCases
+                --exclude-filter CtsWindowManagerDeviceTestCases
+                --disable-reboot
+{% endblock cts_test_params %}
