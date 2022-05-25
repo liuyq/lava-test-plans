@@ -1,0 +1,4 @@
+{% extends "testcases/android-benchmarks.yaml" %}
+
+{% set test_timeout = 60 %}
+{% set benchmark_name = "rl-sqlite" %}
