@@ -1,6 +1,14 @@
 {% extends "include/fastboot.jinja2" %}
 
+{% set deploy_download_timeout = deploy_download_timeout|default(15) %}
+{% set deploy_fastboot_timeout = deploy_fastboot_timeout|default(10) %}
+{% set pre_boot_timeout = pre_boot_timeout|default(0) %}
 {% set post_boot_timeout = post_boot_timeout|default(10) %}
+
+{# target_deploy_timeout is used to calculate the job_timeout defined in the root master.jinja2 file #}
+{# for android the variables of download_timeout, deploy_timeout, between_deploy_boot_timeout are used in the file devices/android/device-base#}
+{# common_tests_after_boot_timeout needs to be defined when there are common actions defined after the boot, but before the real tests started#}
+{% set target_deploy_timeout = deploy_download_timeout + deploy_fastboot_timeout + pre_boot_timeout + post_boot_timeout %}
 
 {% set rootfs = rootfs|default(false) %}
 {% set download_postprocess_required = download_postprocess_required|default(false) %}
@@ -43,7 +51,7 @@ secrets:
 {% block deploy_fastboot %}
 - deploy:
     timeout:
-      minutes: {{ target_deploy_timeout }}
+      minutes: {{ deploy_fastboot_timeout }}
     to: fastboot
     docker:
       image: {{ DOCKER_IMAGE }}
