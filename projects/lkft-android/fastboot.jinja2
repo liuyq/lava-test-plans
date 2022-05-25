@@ -1,5 +1,7 @@
 {% extends "include/fastboot.jinja2" %}
 
+{% set post_boot_timeout = post_boot_timeout|default(10) %}
+
 {% set rootfs = rootfs|default(false) %}
 {% set download_postprocess_required = download_postprocess_required|default(false) %}
 {% set use_docker_image_for_boot = use_docker_image_for_boot|default(true) %}
@@ -101,3 +103,10 @@ secrets:
 {% endif %}
 {% endblock deploy_fastboot %}
 {% endblock deploy_target %}
+
+{% block post_boot_command %}
+{% with test_timeout=post_boot_timeout %}
+{% include "include/test_target.jinja2" %}
+{% endwith %}
+{% include PROJECT+"include/lkft-common-actions.jinja2" %}
+{% endblock post_boot_command %}
