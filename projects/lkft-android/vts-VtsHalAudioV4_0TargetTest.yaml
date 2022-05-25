@@ -1,0 +1,6 @@
+{% extends "projects/lkft-android/vts.yaml" %}
+
+{% set test_timeout = 360 %}
+{% set test_name = "vts-VtsHalAudioV4_0TargetTest" %}
+
+{% block vts_test_params %}vts -m VtsHalAudioV4_0TargetTest{% endblock vts_test_params %}
