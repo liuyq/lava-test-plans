@@ -1,8 +1,10 @@
 {% extends "testcases/android-cts.yaml" %}
 
+{% set cts_test_plan = cts_test_plan|default("cts") %}
+
 {% block job_specific_metadata %}
-  cts-url: "{{TEST_CTS_URL}}/android-cts.zip"
-  cts-manifest: "{{TEST_CTS_URL}}/pinned-manifest.xml"
-  cts-version: "{{TEST_CTS_VERSION}}"
-  cts-plan: "cts-lkft"
+  cts-url: "{{ TEST_CTS_URL }}/android-cts.zip"
+  cts-manifest: "{{ TEST_CTS_URL }}/pinned-manifest.xml"
+  cts-version: "{{ TEST_CTS_VERSION }}"
+  cts-plan: "{{ cts_test_plan }}"
 {% endblock job_specific_metadata %}

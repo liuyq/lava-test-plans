@@ -2,6 +2,7 @@
 
 {% set test_timeout = 360 %}
 {% set test_name = "cts-lkft" %}
+{% set cts_test_plan = "cts-lkft" %}
 
 {% block cts_test_params %}cts
                 --include-filter CtsAslrMallocTestCases
