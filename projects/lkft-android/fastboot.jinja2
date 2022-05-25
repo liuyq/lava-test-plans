@@ -18,6 +18,12 @@
 {% set DOCKER_USERDATA_FILE = DOCKER_USERDATA_FILE|default("userdata.img") %}
 
 {#################### job definitions ##########################}
+
+{% block visibility %}
+  group:
+    - {{ TEST_LAVA_JOB_GROUP }}
+{% endblock visibility %}
+
 {% block deploy_target %}
 {{ super() }}
 
