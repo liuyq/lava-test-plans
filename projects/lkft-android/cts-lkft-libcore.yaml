@@ -1,0 +1,10 @@
+{% extends "projects/lkft-android/cts.yaml" %}
+
+{% set test_timeout = 600 %}
+{% set test_name = "cts-lkft-libcore" %}
+{% set cts_test_plan = "cts-lkft" %}
+
+{% block cts_test_params %}cts
+                -m CtsLibcoreTestCases
+                --disable-reboot
+{% endblock cts_test_params %}
