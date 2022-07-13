@@ -21,12 +21,24 @@
     {% set partition_vendor_boot = true %}
 {% endif%}
 
+{% if TUXSUITE_BAKE_VENDOR_DOWNLOAD_URL is defined %}
+{% set partition_boot_with_postprocess = false %}
+{% set partition_super_with_postprocess = false %}
+{% set partition_vendor_boot_with_postprocess = false %}
+{% set partition_userdata_with_postprocess = false %}
+{% endif%}
+
 {# override the one defined in projects/lkft-android/fastboot.jinja2 #}
 {% block settings %}
   {{ super() }}
   AP_SSID: "{{AP_SSID}}"
   AP_KEY: "{{AP_KEY}}"
 {% endblock settings %}
+
+{% set download_postprocess_required = true %}
+{% block postprocess %}
+{% include "include/tuxsuite-postprocess.jinja2" %}
+{% endblock postprocess %}
 
 {% block pre_boot_command %}
 {% with test_timeout=5 %}
