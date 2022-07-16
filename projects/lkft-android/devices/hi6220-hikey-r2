@@ -19,6 +19,13 @@
 {% set partition_vendor = true %}
 {% set partition_userdata = partition_userdata|default(true) %}
 
+{% if TUXSUITE_BAKE_VENDOR_DOWNLOAD_URL is defined %}
+{% set partition_boot_with_postprocess = false %}
+{% set partition_system_with_postprocess = false %}
+{% set partition_vendor_with_postprocess = false %}
+{% set partition_userdata_with_postprocess = false %}
+{% endif%}
+
 {# override the blocks defined in "devices/hi6220-hikey" #}
 {% block auto_login_commands %}
 {% endblock auto_login_commands %}
@@ -31,6 +38,11 @@
   AP_SSID: "{{AP_SSID}}"
   AP_KEY: "{{AP_KEY}}"
 {% endblock settings %}
+
+{% set download_postprocess_required = true %}
+{% block postprocess %}
+{% include "include/tuxsuite-postprocess.jinja2" %}
+{% endblock postprocess %}
 
 {# override the test_target block defined in "devices/hi6220-hikey" #}
 {% block test_target %}
