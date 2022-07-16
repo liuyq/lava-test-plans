@@ -3,7 +3,7 @@
         docker:
             image: tuxsuite/tuxsuite:0.25.0
             steps:
-            - apt-get update && apt-get install -y wget selinux-utils cpio rsync sudo bc curl git xz-utils
+            - apt-get update && apt-get install -y wget selinux-utils cpio rsync sudo bc curl git xz-utils file
             - rm -fr /linaro-android/lkft && mkdir -p /linaro-android/lkft
             - wget https://android-git.linaro.org/android-build-configs.git/plain/lkft/linaro-lkft.sh?h=lkft -O /linaro-android/lkft/linaro-lkft.sh && chmod +x /linaro-android/lkft/linaro-lkft.sh
 {% if BUILD_REFERENCE_IMAGE_GZ_URL is defined %}
