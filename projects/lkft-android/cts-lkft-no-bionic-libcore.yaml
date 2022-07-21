@@ -21,6 +21,5 @@
                 --include-filter CtsSystemUiTestCases
                 --include-filter CtsSystemUiRenderingTestCases
                 --include-filter CtsUsbTests
-                --include-filter CtsWebkitTestCases
                 --disable-reboot
 {% endblock cts_test_params %}
