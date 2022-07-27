@@ -3,11 +3,11 @@
         docker:
             image: tuxsuite/tuxsuite:0.25.0
             steps:
-            - apt-get update && apt-get install -y wget selinux-utils cpio rsync sudo bc curl git xz-utils file
+            - apt-get update && apt-get install -y wget selinux-utils cpio rsync sudo bc curl git xz-utils file libguestfs-tools
             - rm -fr /linaro-android/lkft && mkdir -p /linaro-android/lkft
             - wget https://android-git.linaro.org/android-build-configs.git/plain/lkft/linaro-lkft.sh?h=lkft -O /linaro-android/lkft/linaro-lkft.sh && chmod +x /linaro-android/lkft/linaro-lkft.sh
 {% if BUILD_REFERENCE_IMAGE_GZ_URL is defined %}
-            - cd /linaro-android/lkft && BUILD_REFERENCE_IMAGE_GZ_URL={{BUILD_REFERENCE_IMAGE_GZ_URL}} TUXSUITE_BAKE_VENDOR_DOWNLOAD_URL={{TUXSUITE_BAKE_VENDOR_DOWNLOAD_URL}} ./linaro-lkft.sh -c {{LKFT_BUILD_CONFIG}} && cd -
+            - cd /linaro-android/lkft && USE_GUESTFISH=true BUILD_REFERENCE_IMAGE_GZ_URL={{BUILD_REFERENCE_IMAGE_GZ_URL}} TUXSUITE_BAKE_VENDOR_DOWNLOAD_URL={{TUXSUITE_BAKE_VENDOR_DOWNLOAD_URL}} ./linaro-lkft.sh -c {{LKFT_BUILD_CONFIG}} && cd -
 {% else %}
             - cd /linaro-android/lkft && TUXSUITE_BAKE_VENDOR_DOWNLOAD_URL={{TUXSUITE_BAKE_VENDOR_DOWNLOAD_URL}} ./linaro-lkft.sh -c {{LKFT_BUILD_CONFIG}} && cd -
 {% endif %}
