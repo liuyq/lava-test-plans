@@ -9,7 +9,7 @@
 {% if BUILD_REFERENCE_IMAGE_GZ_URL is defined %}
             - cd /linaro-android/lkft && USE_GUESTFISH=true BUILD_REFERENCE_IMAGE_GZ_URL={{BUILD_REFERENCE_IMAGE_GZ_URL}} TUXSUITE_BAKE_VENDOR_DOWNLOAD_URL={{TUXSUITE_BAKE_VENDOR_DOWNLOAD_URL}} ./linaro-lkft.sh -c {{LKFT_BUILD_CONFIG}} && cd -
 {% else %}
-            - cd /linaro-android/lkft && TUXSUITE_BAKE_VENDOR_DOWNLOAD_URL={{TUXSUITE_BAKE_VENDOR_DOWNLOAD_URL}} ./linaro-lkft.sh -c {{LKFT_BUILD_CONFIG}} && cd -
+            - cd /linaro-android/lkft && USE_GUESTFISH=true TUXSUITE_BAKE_VENDOR_DOWNLOAD_URL={{TUXSUITE_BAKE_VENDOR_DOWNLOAD_URL}} ./linaro-lkft.sh -c {{LKFT_BUILD_CONFIG}} && cd -
 {% endif %}
             - for f in {{PUBLISH_FILES}}; do if echo $f|grep '\.xz$'; then [ -f /linaro-android/lkft/out/{{LKFT_BUILD_CONFIG}}/${f} ] &&  rm -f /linaro-android/lkft/out/{{LKFT_BUILD_CONFIG}}/$(echo ${f}|sed "s|.xz$||") && xz -d /linaro-android/lkft/out/{{LKFT_BUILD_CONFIG}}/${f}; fi;done
             - for f in {{PUBLISH_FILES}}; do f_no_xz=$(echo ${f}|sed "s|.xz$||"); [ -f /linaro-android/lkft/out/{{LKFT_BUILD_CONFIG}}/${f_no_xz} ] && mv -v /linaro-android/lkft/out/{{LKFT_BUILD_CONFIG}}/${f_no_xz} /lava-downloads/${f_no_xz}; done

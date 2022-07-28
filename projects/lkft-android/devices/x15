@@ -15,6 +15,25 @@
 {% set partition_userdata = partition_userdata|default(true) %}
 {% set partition_recovery = partition_recovery|default(true) %}
 
+{% if TUXSUITE_BAKE_VENDOR_DOWNLOAD_URL is defined %}
+{% set partition_boot_with_postprocess = false %}
+{% set partition_boot_a_with_postprocess = false %}
+{% set partition_boot_b_with_postprocess = false %}
+{% set partition_vbmeta_with_postprocess = false %}
+{% set partition_vbmeta_a_with_postprocess = false %}
+{% set partition_vbmeta_b_with_postprocess = false %}
+{% set partition_super_with_postprocess = false %}
+{% set partition_recovery_with_postprocess = false %}
+{% set USERDATA_URL = REFERENCE_BUILD_URL + "/userdata.img.xz" %}
+{% set USERDATA_URL_COMP = "xz" %}
+
+{% endif%}
+
+{% set download_postprocess_required = true %}
+{% block postprocess %}
+{% include "include/tuxsuite-postprocess.jinja2" %}
+{% endblock postprocess %}
+
 {# override the boot_commands block defined in "devices/x15" #}
 {% block boot_commands %}
 {% endblock boot_commands %}
