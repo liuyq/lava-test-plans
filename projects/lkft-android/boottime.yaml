@@ -1,7 +1,7 @@
 {% extends "testcases/master/template-android.jinja2" %}
 
-{% set test_timeout = 120 %}
-{% set boottime_timeout = 5 %}
+{% set test_timeout = 210 %}
+{% set boottime_timeout = 15 %}
 {% set test_name = "boottime" %}
 
 {% block test_target %}
