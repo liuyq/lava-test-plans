@@ -9,7 +9,6 @@
         run:
           steps:
             - lava-test-case "android-boot-sleep-30secs" --shell sleep 30
-            - lava-test-case "android-boot-lsusb-v" --shell lsusb -v
             - lava-test-case "android-boot-boot-completed" --shell "while ! adb shell getprop sys.boot_completed|grep 1; do sleep 2; done"
             - lava-test-case "android-boot-set-power-stayon" --shell adb shell su 0 svc power stayon true
             - lava-test-case "android-boot-screencap" --shell adb shell screencap -p /data/local/tmp/screencap.png
