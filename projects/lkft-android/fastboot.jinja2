@@ -1,6 +1,6 @@
 {% extends "include/fastboot.jinja2" %}
 
-{% set deploy_download_timeout = deploy_download_timeout|default(15) %}
+{% set deploy_download_timeout = deploy_download_timeout|default(35) %}
 {% set deploy_fastboot_timeout = deploy_fastboot_timeout|default(10) %}
 {% set pre_boot_timeout = pre_boot_timeout|default(0) %}
 {% set post_boot_timeout = post_boot_timeout|default(10) %}
