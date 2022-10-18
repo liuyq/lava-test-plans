@@ -6,6 +6,6 @@
 
 {% block cts_test_params %}cts
                 --abi armeabi-v7a
-                -m CtsLibcoreTestCases
+                -m CtsLibcoreTestCases --exclude-filter "CtsLibcoreTestCases libcore.org.apache.harmony.dalvik.ddmc.DdmVmInternalTest"
                 --disable-reboot
 {% endblock cts_test_params %}
