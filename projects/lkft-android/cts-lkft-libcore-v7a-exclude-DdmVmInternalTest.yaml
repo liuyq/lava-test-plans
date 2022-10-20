@@ -1,7 +1,7 @@
 {% extends "projects/lkft-android/cts.yaml" %}
 
 {% set test_timeout = 300 %}
-{% set test_name = "cts-lkft-libcore-v7a" %}
+{% set test_name = "cts-lkft-libcore-v7a-exclude-DdmVmInternalTest" %}
 {% set cts_test_plan = "cts-lkft" %}
 
 {% block cts_test_params %}cts
