@@ -5,6 +5,8 @@
 {% set DOCKER_IMAGE = DOCKER_IMAGE|default("debian:buster") %}
 {% set ptable = ptable|default(false) %}
 {% set PTABLE_LABEL = PTABLE_LABEL|default("ptable") %}
+{% set abl = abl|default(false) %}
+{% set ABL_LABEL = ABL_LABEL|default("abl") %}
 {% set reboot_reset = reboot_reset|default(false) %}
 {% set reboot_to_fastboot = reboot_to_fastboot|default("false") %}
 {% set boot = boot|default(true) %}
@@ -68,6 +70,13 @@ reboot_to_fastboot: {{ reboot_to_fastboot }}
       minutes: {{ target_deploy_timeout }}
     to: {{ DEPLOY_TARGET }}
     images:
+{% if abl == true %}
+      {{ ABL_LABEL }}:
+        url: {{ABL_URL}}
+{% if ABL_URL_COMP is defined %}
+        compression: {{ABL_URL_COMP}}
+{% endif %}
+{% endif %}
 {% if ptable == true %}
       {{ PTABLE_LABEL }}:
         url: {{PTABLE_URL}}

@@ -56,6 +56,10 @@ secrets:
     docker:
       image: {{ DOCKER_IMAGE }}
     images:
+{% if abl == true %}
+      {{ ABL_LABEL }}:
+        url: downloads://{{ DOCKER_ABL_FILE }}
+{% endif %}
 {% if ptable == true %}
       {{ PTABLE_LABEL }}:
         url: downloads://{{ DOCKER_PTABLE_FILE }}

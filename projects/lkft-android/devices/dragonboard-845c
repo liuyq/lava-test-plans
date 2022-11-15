@@ -7,6 +7,7 @@
 {% set boot_method = boot_method |default("fastboot") %}
 {% set BOOT_OS_PROMPT = ["console:/"] %}
 {% set ptable = true %}
+{% set abl = abl|default(false) %}
 {% set pre_boot_command = true %}
 {% set pre_os_command = false %}
 {% set pre_power_command = false %}
@@ -15,8 +16,10 @@
 
 {% set PTABLE_LABEL = PTABLE_LABEL|default("partition:0") %}
 {% set DOCKER_PTABLE_FILE = DOCKER_PTABLE_FILE|default("gpt_both0.bin") %}
-{% set PTABLE_URL = PTABLE_URL|default("https://images.validation.linaro.org/snapshots.linaro.org/96boards/dragonboard845c/linaro/rescue/90/dragonboard-845c-bootloader-ufs-aosp-90/gpt_both0.bin
-") %}
+{% set PTABLE_URL = PTABLE_URL|default("https://images.validation.linaro.org/snapshots.linaro.org/96boards/dragonboard845c/linaro/rescue/101/dragonboard-845c-bootloader-ufs-aosp-101/gpt_both0.bin") %}
+{% set ABL_LABEL = ABL_LABEL|default("abl") %}
+{% set DOCKER_ABL_FILE = DOCKER_ABL_FILE|default("abl.elf") %}
+{% set ABL_URL = ABL_URL|default("https://images.validation.linaro.org/snapshots.linaro.org/96boards/dragonboard845c/linaro/rescue/101/dragonboard-845c-bootloader-ufs-aosp-101/abl.elf") %}
 {% set partition_super = partition_super|default(true) %}
 {% set partition_userdata = partition_userdata|default(true) %}
 {% if IMAGE_SUPPORTED_VENDOR_BOOT is defined and IMAGE_SUPPORTED_VENDOR_BOOT == "true" %}
