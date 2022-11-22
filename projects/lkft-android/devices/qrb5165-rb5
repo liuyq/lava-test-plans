@@ -28,13 +28,6 @@
 {% set partition_userdata_with_postprocess = false %}
 {% endif%}
 
-{# override the one defined in projects/lkft-android/fastboot.jinja2 #}
-{% block settings %}
-  {{ super() }}
-  AP_SSID: "{{AP_SSID}}"
-  AP_KEY: "{{AP_KEY}}"
-{% endblock settings %}
-
 {% set download_postprocess_required = true %}
 {% block postprocess %}
 {% include "include/tuxsuite-postprocess.jinja2" %}
