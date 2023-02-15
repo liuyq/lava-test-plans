@@ -117,8 +117,5 @@ secrets:
 {% endblock deploy_target %}
 
 {% block post_boot_command %}
-{% with test_timeout=post_boot_timeout %}
-{% include "include/test_target.jinja2" %}
-{% endwith %}
 {% include PROJECT+"include/lkft-common-actions.jinja2" %}
 {% endblock post_boot_command %}

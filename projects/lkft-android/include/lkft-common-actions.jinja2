@@ -1,3 +1,20 @@
+{% with test_timeout=5, use_docker_image_for_test_target=false, test_target_interactive=true %}
+{% include "include/test_target.jinja2" %}
+{% endwith %}
+    - name: sleep-before-adb-available
+      prompts:
+        - console:/
+        - root@(.*):[/~]#
+      script:
+      - command: "echo ==========================="
+      - command: "sleep 120"
+      - command: "echo ==========================="
+      - command: "getprop | grep adb"
+      - command: "echo ==========================="
+
+{% with test_timeout=post_boot_timeout %}
+{% include "include/test_target.jinja2" %}
+{% endwith %}
     - from: inline
       path: android-boot.yaml
       name: android-boot
