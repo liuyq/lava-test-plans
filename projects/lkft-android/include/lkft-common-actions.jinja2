@@ -6,11 +6,13 @@
         - console:/
         - root@(.*):[/~]#
       script:
-      - command: "echo ==========================="
-      - command: "sleep 120"
-      - command: "echo ==========================="
-      - command: "getprop | grep adb"
-      - command: "echo ==========================="
+      - command: echo ===========================
+      - command: while ! getprop sys.boot_completed|grep 1; do echo sleep 10s for sys.boot_completed; sleep 10; done
+      - command: echo ===========================
+      - command: while ! getprop init.svc.adbd|grep running; do echo sleep 10s for init.svc.adbd; sleep 10; done
+      - command: echo ===========================
+      - command: getprop | grep adb
+      - command: echo ===========================
 
 {% with test_timeout=post_boot_timeout %}
 {% include "include/test_target.jinja2" %}
@@ -25,7 +27,7 @@
           description: "android-boot"
         run:
           steps:
-            - lava-test-case "android-boot-sleep-30secs" --shell sleep 30
+            - lava-test-case "android-boot-wait-for-device" --shell adb wait-for-device
             - lava-test-case "android-boot-boot-completed" --shell "while ! adb shell getprop sys.boot_completed|grep 1; do sleep 2; done"
             - lava-test-case "android-boot-set-power-stayon" --shell adb shell su 0 svc power stayon true
             - lava-test-case "android-boot-screencap" --shell adb shell screencap -p /data/local/tmp/screencap.png
