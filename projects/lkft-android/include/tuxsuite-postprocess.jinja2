@@ -4,7 +4,6 @@
             image: linaro/lava-android-postprocess:latest
             steps:
 {% if BUILD_REFERENCE_IMAGE_GZ_URL is defined %}
-            - cd /linaro-android/lkft && USE_GUESTFISH=true BUILD_REFERENCE_IMAGE_GZ_URL={{BUILD_REFERENCE_IMAGE_GZ_URL}} TUXSUITE_BAKE_VENDOR_DOWNLOAD_URL={{TUXSUITE_BAKE_VENDOR_DOWNLOAD_URL}} ./linaro-lkft.sh -c {{LKFT_BUILD_CONFIG}} && cd -
             - linaro-lkft-android.sh -g -k {{BUILD_REFERENCE_IMAGE_GZ_URL}} -v {{TUXSUITE_BAKE_VENDOR_DOWNLOAD_URL}} -c {{LKFT_BUILD_CONFIG}}
 {% else %}
             - linaro-lkft-android.sh -g -v {{TUXSUITE_BAKE_VENDOR_DOWNLOAD_URL}} -c {{LKFT_BUILD_CONFIG}}
