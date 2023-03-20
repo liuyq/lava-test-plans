@@ -7,9 +7,11 @@
         - root@(.*):[/~]#
       script:
       - command: echo ===========================
-      - command: while ! getprop sys.boot_completed|grep 1; do echo sleep 10s for sys.boot_completed; sleep 10; done
+      - command: i=0 && while ! getprop sys.boot_completed|grep 1 && [ $i -le 15 ]; do let i=i+1; echo sleep $i*10s for sys.boot_completed; sleep 10; done
+      - command: if ! getprop sys.boot_completed|grep 1 ; then logcat -d; echo "Failed to boot successfully"; exit 1; fi
       - command: echo ===========================
-      - command: while ! getprop init.svc.adbd|grep running; do echo sleep 10s for init.svc.adbd; sleep 10; done
+      - command: i=0 && while ! getprop init.svc.adbd|grep running && [ $i -le 15 ]; do let i=i+1; echo sleep $i*10s for init.svc.adbd; sleep 10; done
+      - command: if ! getprop init.svc.adbd|grep running; then logcat -d; echo "Failed to have adbd running"; exit 1; fi
       - command: echo ===========================
       - command: getprop | grep adb
       - command: echo ===========================
