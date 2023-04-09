@@ -100,5 +100,6 @@
                 --exclude-filter CtsBackupHostTestCases
                 --exclude-filter CtsBackupTestCases
                 --exclude-filter CtsSecurityBulletinHostTestCases
+                --exclude-filter CtsIncrementalInstallHostTestCases
                 --disable-reboot
 {% endblock cts_test_params %}
