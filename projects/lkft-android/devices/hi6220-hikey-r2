@@ -13,8 +13,8 @@
 
 {% set ptable = true %}
 {% set PTABLE_LABEL = PTABLE_LABEL|default("ptable") %}
-{% set DOCKER_PTABLE_FILE = DOCKER_PTABLE_FILE|default("ptable-aosp-8g.img") %}
-{% set PTABLE_URL = PTABLE_URL|default("http://images.validation.linaro.org/snapshots.linaro.org/96boards/reference-platform/components/uefi-staging/69/hikey/release/ptable-aosp-8g.img") %}
+{% set DOCKER_PTABLE_FILE = DOCKER_PTABLE_FILE|default("prm_ptable.img") %}
+{% set PTABLE_URL = PTABLE_URL|default("http://testdata.linaro.org/lkft/aosp-stable/reference-platform/components/uefi-staging/123/hikey/release/prm_ptable.img") %}
 {% set partition_system = true %}
 {% set partition_vendor = true %}
 {% set partition_userdata = partition_userdata|default(true) %}
