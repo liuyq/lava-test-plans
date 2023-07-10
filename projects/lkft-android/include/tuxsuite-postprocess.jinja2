@@ -1,11 +1,17 @@
+{% if ANDORID_BUILD_CONFIG_URL is defined %}
+{% set opt_build_config_url = "-cu " + ANDORID_BUILD_CONFIG_URL %}
+{% else %}
+{% set opt_build_config_url = "" %}
+{% endif %}
+
 {% if TUXSUITE_BAKE_VENDOR_DOWNLOAD_URL is defined %}
     postprocess:
         docker:
             image: linaro/lava-android-postprocess:latest
             steps:
 {% if BUILD_REFERENCE_IMAGE_GZ_URL is defined %}
-            - linaro-lkft-android.sh -g -k {{BUILD_REFERENCE_IMAGE_GZ_URL}} -v {{TUXSUITE_BAKE_VENDOR_DOWNLOAD_URL}} -c {{LKFT_BUILD_CONFIG}}
+            - linaro-lkft-android.sh -g -k {{BUILD_REFERENCE_IMAGE_GZ_URL}} -v {{TUXSUITE_BAKE_VENDOR_DOWNLOAD_URL}} -c {{LKFT_BUILD_CONFIG}} {{opt_build_config_url}}
 {% else %}
-            - linaro-lkft-android.sh -g -v {{TUXSUITE_BAKE_VENDOR_DOWNLOAD_URL}} -c {{LKFT_BUILD_CONFIG}}
+            - linaro-lkft-android.sh -g -v {{TUXSUITE_BAKE_VENDOR_DOWNLOAD_URL}} -c {{LKFT_BUILD_CONFIG}} {{opt_build_config_url}}
 {% endif %}
 {% endif %}
