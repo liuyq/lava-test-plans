@@ -1,5 +1,10 @@
 {% if ANDORID_BUILD_CONFIG_URL is defined %}
 {% set opt_build_config_url = "-cu " + ANDORID_BUILD_CONFIG_URL %}
+{% if DEV_PRIVATE_USER is defined and DEV_PRIVATE_PASSWORD is defined %}
+{## need both user and passwork privated and only when config url specified  ##}
+{## Other cases are not supported for now ##}
+{% set opt_build_config_url = opt_build_config_url + " -u " + DEV_PRIVATE_USER + " -p " + DEV_PRIVATE_PASSWORD %}
+{% endif %}
 {% else %}
 {% set opt_build_config_url = "" %}
 {% endif %}
