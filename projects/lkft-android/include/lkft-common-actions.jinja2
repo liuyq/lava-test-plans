@@ -1,4 +1,4 @@
-{% with test_timeout=5, use_docker_image_for_test_target=false, test_target_interactive=true %}
+{% with test_timeout=10, use_docker_image_for_test_target=false, test_target_interactive=true %}
 {% include "include/test_target.jinja2" %}
 {% endwith %}
     - name: sleep-before-adb-available
@@ -7,7 +7,7 @@
         - root@(.*):[/~]#
       script:
       - command: echo ===========================
-      - command: i=0 && while ! getprop sys.boot_completed|grep 1 && [ $i -le 15 ]; do let i=i+1; echo sleep $i*10s for sys.boot_completed; sleep 10; done
+      - command: i=0 && while ! getprop sys.boot_completed|grep 1 && [ $i -le 30 ]; do let i=i+1; echo sleep $i*10s for sys.boot_completed; sleep 10; done
       - command: if ! getprop sys.boot_completed|grep 1 ; then logcat -d; echo "Failed to boot successfully"; exit 1; fi
       - command: echo ===========================
       - command: i=0 && while ! getprop init.svc.adbd|grep running && [ $i -le 15 ]; do let i=i+1; echo sleep $i*10s for init.svc.adbd; sleep 10; done
