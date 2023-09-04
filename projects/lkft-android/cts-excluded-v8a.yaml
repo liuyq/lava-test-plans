@@ -1,0 +1,33 @@
+{% extends "projects/lkft-android/cts.yaml" %}
+
+{% set test_timeout = 600 %}
+{% set test_name = "cts-excluded-v8a" %}
+{% set cts_test_plan = "cts" %}
+
+{% block cts_test_params %}cts --abi arm64-v8a
+                --include-filter CtsKeystoreTestCases
+                --include-filter CtsWindowManagerDeviceTestCases
+                --include-filter CtsDevicePolicyManagerTestCases
+                --include-filter CtsIdentityTestCases
+                --include-filter CtsJobSchedulerTestCases
+                --include-filter CtsIncidentHostTestCases
+                --include-filter CtsIncidentHostTestCases[instant]
+                --include-filter CtsStatsdHostTestCases[instant]
+                --include-filter CtsStatsdHostTestCases
+                --include-filter CtsPrintTestCases
+                --include-filter CtsPrintTestCases[instant]
+                --include-filter CtsFileSystemTestCases
+                --include-filter CtsFileSystemTestCases[instant]
+                --include-filter CtsUsageStatsTestCases
+                --include-filter CtsTrustedVoiceHostTestCases
+                --include-filter CtsPerfettoTestCases
+                --include-filter CtsShortcutHostTestCases
+                --include-filter CtsNativeHardwareTestCases
+                --include-filter CtsNativeMidiTestCases
+                --include-filter CtsAutoFillServiceTestCases[instant]
+                --include-filter CtsAutoFillServiceTestCases
+                --include-filter CtsBackupHostTestCases
+                --include-filter CtsBackupTestCases
+                --include-filter CtsSecurityBulletinHostTestCases
+                --disable-reboot
+{% endblock cts_test_params %}
