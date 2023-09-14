@@ -1,10 +1,14 @@
 {% set use_docker_image_for_test_target = use_docker_image_for_test_target|default(false) %}
+{% set use_local_docker_image_for_test_target = use_local_docker_image_for_test_target|default(false) %}
 
 {% if enable_tests is defined and enable_tests %}
 - test:
 {% if use_docker_image_for_test_target == true %}
     docker:
       image: {{ DOCKER_IMAGE }}
+{% if use_local_docker_image_for_test_target == true %}
+      local: true
+{% endif %}
 {% endif %}
 {% if lxc_project == true %}
     namespace: target

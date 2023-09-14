@@ -256,6 +256,9 @@ reboot_to_fastboot: {{ reboot_to_fastboot }}
 {% if use_docker_image_for_boot == true %}
     docker:
       image: {{ DOCKER_IMAGE }}
+{% if use_local_docker_image_for_test_target == true %}
+      local: true
+{% endif %}
 {% endif %}
 {% block boot_commands %}
 {% endblock boot_commands %}

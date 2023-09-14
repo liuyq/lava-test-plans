@@ -58,6 +58,9 @@ secrets:
     to: fastboot
     docker:
       image: {{ DOCKER_IMAGE }}
+{% if use_local_docker_image_for_test_target == true %}
+      local: true
+{% endif %}
     images:
 {% if abl == true %}
       {{ ABL_LABEL }}:
