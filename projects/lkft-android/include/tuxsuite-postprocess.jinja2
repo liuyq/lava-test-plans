@@ -12,7 +12,8 @@
 {% if TUXSUITE_BAKE_VENDOR_DOWNLOAD_URL is defined %}
     postprocess:
         docker:
-            image: linaro/lava-android-postprocess:latest
+            image: linaro/lava-android-postprocess:bulleye-2023.09.14-01
+            local: true
             steps:
 {% if BUILD_REFERENCE_IMAGE_GZ_URL is defined %}
             - linaro-lkft-android.sh -g -k {{BUILD_REFERENCE_IMAGE_GZ_URL}} -v {{TUXSUITE_BAKE_VENDOR_DOWNLOAD_URL}} -c {{LKFT_BUILD_CONFIG}} {{opt_build_config_url}}
