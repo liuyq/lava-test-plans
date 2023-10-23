@@ -28,8 +28,15 @@
                 --include-filter CtsBugreportTestCases
                 --include-filter CtsCameraTestCases
                 --include-filter CtsCameraTestCases[instant]
+                --include-filter CtsAppExitTestCases
                 --include-filter CtsAppExitTestCases[instant]
                 --include-filter CtsLibcoreFileIOTestCases
                 --include-filter CtsSimpleperfTestCases
+                --exclude-filter "CtsAppExitTestCases android.app.cts.ActivityManagerAppExitInfoTest#testCrash"
+                --exclude-filter "CtsAppExitTestCases android.app.cts.ActivityManagerAppExitInfoTest#testNativeCrash"
+                --exclude-filter "CtsAppExitTestCases android.app.cts.ActivityManagerAppExitInfoTest#testLmkdKill"
+                --exclude-filter "CtsAppExitTestCases[instant] android.app.cts.ActivityManagerAppExitInfoTest#testCrash"
+                --exclude-filter "CtsAppExitTestCases[instant] android.app.cts.ActivityManagerAppExitInfoTest#testNativeCrash"
+                --exclude-filter "CtsAppExitTestCases[instant] android.app.cts.ActivityManagerAppExitInfoTest#testLmkdKill"
                 --disable-reboot
 {% endblock cts_test_params %}

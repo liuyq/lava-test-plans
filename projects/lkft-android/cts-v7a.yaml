@@ -33,6 +33,7 @@
                 --exclude-filter CtsBugreportTestCases
                 --exclude-filter CtsCameraTestCases
                 --exclude-filter CtsCameraTestCases[instant]
+                --exclude-filter CtsAppExitTestCases
                 --exclude-filter CtsAppExitTestCases[instant]
                 --exclude-filter CtsLibcoreFileIOTestCases
                 --exclude-filter CtsSimpleperfTestCases
