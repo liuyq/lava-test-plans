@@ -5,9 +5,10 @@
 {% set cts_test_plan = "cts" %}
 
 {% block cts_test_params %}cts --abi armeabi-v7a
+                --include-filter CtsMediaBitstreamsTestCases
                 --include-filter CtsMediaDrmTestCases[instant]
                 --include-filter CtsMediaDrmTestCases
-                --include-filter CtsMediaBitstreamsTestCases
+                --include-filter CtsMediaProviderTranscodeTests
                 --include-filter CtsInstallHostTestCases
                 --include-filter CtsContactsProviderTestCases
                 --include-filter CtsNetTestCases
@@ -20,7 +21,6 @@
                 --include-filter CtsSensorTestCases[instant]
                 --include-filter CtsSensorTestCases
                 --include-filter CtsExtractNativeLibsHostTestCases
-                --include-filter CtsMediaProviderTranscodeTests
                 --include-filter CtsWebkitTestCases
                 --include-filter CtsTextTestCases
                 --include-filter CtsPermissionTestCases

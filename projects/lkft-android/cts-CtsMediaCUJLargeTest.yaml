@@ -1,0 +1,8 @@
+{% extends "projects/lkft-android/cts.yaml" %}
+
+{% set test_timeout = 300 %}
+{% set test_name = "cts-CtsMediaCUJLargeTest" %}
+{% set cts_test_plan = "cts" %}
+
+{% block cts_test_params %}cts -m CtsMediaCUJLargeTest --disable-reboot
+{% endblock cts_test_params %}

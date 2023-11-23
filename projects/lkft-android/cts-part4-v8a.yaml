@@ -1,0 +1,62 @@
+{% extends "projects/lkft-android/cts.yaml" %}
+
+{% set test_timeout = 360 %}
+{% set test_name = "cts-part4-v8a" %}
+{% set cts_test_plan = "cts" %}
+
+{% block cts_test_params %}cts --abi arm64-v8a
+                --include-filter CtsAccessibilityServiceTestCases
+                --include-filter CtsAccessibilityServiceTestCases[instant]
+                --include-filter CtsAdServicesDebuggableDeviceTestCases
+                --include-filter CtsAlarmManagerTestCases
+                --include-filter CtsAlarmManagerTestCases[instant]
+                --include-filter CtsAnimationTestCases
+                --include-filter CtsAnimationTestCases[instant]
+                --include-filter CtsAppEnumerationTestCases
+                --include-filter CtsBluetoothTestCases
+                --include-filter CtsCompanionDeviceManagerCoreTestCases
+                --include-filter CtsCompanionDeviceManagerUiAutomationTestCases
+                --include-filter CtsContentTestCases[instant]
+                --include-filter CtsDeviceConfigTestCases
+                --include-filter CtsDynamicMimeChangedGroupAppUpdateHostTestCases
+                --include-filter CtsDynamicMimePreferredActivitiesHostTestCases
+                --include-filter CtsFragmentTestCases
+                --include-filter CtsFragmentTestCases[instant]
+                --include-filter CtsGpuToolsHostTestCases
+                --include-filter CtsHardwareTestCases
+                --include-filter CtsHealthConnectControllerTestCases
+                --include-filter CtsHealthFitnessDeviceTestCases
+                --include-filter CtsHibernationTestCases
+                --include-filter CtsHiddenApiKillswitchDebugClassTestCases
+                --include-filter CtsHiddenApiKillswitchDebugClassTestCases[instant]
+                --include-filter CtsHiddenApiKillswitchSdkListTestCases
+                --include-filter CtsHiddenApiKillswitchSdkListTestCases[instant]
+                --include-filter CtsHiddenApiKillswitchWildcardTestCases
+                --include-filter CtsHiddenApiKillswitchWildcardTestCases[instant]
+                --include-filter CtsLocaleManagerTestCases
+                --include-filter CtsMediaAudioTestCases[instant]
+                --include-filter CtsNotificationTestCases
+                --include-filter CtsOsHostTestCases
+                --include-filter CtsOsHostTestCases[instant]
+                --include-filter CtsPackageInstallTestCases
+                --include-filter CtsPackageInstallTestCases[instant]
+                --include-filter CtsPackageInstallTestCases[run-on-clone-profile]
+                --include-filter CtsPackageInstallTestCases[run-on-secondary-user]
+                --include-filter CtsPackageInstallTestCases[run-on-work-profile]
+                --include-filter CtsPackageManagerStatsHostTestCases
+                --include-filter CtsPhotoPickerTest
+                --include-filter CtsPhotoPickerTest[run-on-work-profile]
+                --include-filter CtsPhotoPickerTest[run-on-clone-profile]
+                --include-filter CtsPhotoPickerTest[run-on-secondary-user]
+                --include-filter CtsPreferenceTestCases
+                --include-filter CtsPreferenceTestCases[instant]
+                --include-filter CtsQuickAccessWalletTestCases
+                --include-filter CtsQuickAccessWalletTestCases[instant]
+                --include-filter CtsRenderscriptTestCases
+                --include-filter CtsRenderscriptTestCases[instant]
+                --include-filter CtsRoleTestCases
+                --include-filter CtsScopedStorageHostTest
+                --include-filter CtsScopedStorageHostTest[instant]
+                --include-filter CtsSdkSandboxWebkitTestCases
+                --disable-reboot
+{% endblock cts_test_params %}

@@ -1,17 +1,68 @@
 {% extends "projects/lkft-android/cts.yaml" %}
 
-{% set test_timeout = 900 %}
+{% set test_timeout = 480 %}
 {% set test_name = "cts-v7a" %}
 {% set cts_test_plan = "cts" %}
 
 {% block cts_test_params %}cts --abi armeabi-v7a
+                --exclude-filter CtsAccessibilityServiceTestCases
+                --exclude-filter CtsAccessibilityServiceTestCases[instant]
+                --exclude-filter CtsAdServicesDebuggableDeviceTestCases
+                --exclude-filter CtsAlarmManagerTestCases
+                --exclude-filter CtsAlarmManagerTestCases[instant]
+                --exclude-filter CtsAnimationTestCases
+                --exclude-filter CtsAnimationTestCases[instant]
+                --exclude-filter CtsAppEnumerationTestCases
+                --exclude-filter CtsBluetoothTestCases
+                --exclude-filter CtsCompanionDeviceManagerCoreTestCases
+                --exclude-filter CtsCompanionDeviceManagerUiAutomationTestCases
+                --exclude-filter CtsContentTestCases[instant]
+                --exclude-filter CtsDeviceConfigTestCases
+                --exclude-filter CtsDynamicMimeChangedGroupAppUpdateHostTestCases
+                --exclude-filter CtsDynamicMimePreferredActivitiesHostTestCases
+                --exclude-filter CtsFragmentTestCases
+                --exclude-filter CtsFragmentTestCases[instant]
+                --exclude-filter CtsGpuToolsHostTestCases
+                --exclude-filter CtsHardwareTestCases
+                --exclude-filter CtsHealthConnectControllerTestCases
+                --exclude-filter CtsHealthFitnessDeviceTestCases
+                --exclude-filter CtsHibernationTestCases
+                --exclude-filter CtsHiddenApiKillswitchDebugClassTestCases
+                --exclude-filter CtsHiddenApiKillswitchDebugClassTestCases[instant]
+                --exclude-filter CtsHiddenApiKillswitchSdkListTestCases
+                --exclude-filter CtsHiddenApiKillswitchSdkListTestCases[instant]
+                --exclude-filter CtsHiddenApiKillswitchWildcardTestCases
+                --exclude-filter CtsHiddenApiKillswitchWildcardTestCases[instant]
+                --exclude-filter CtsLocaleManagerTestCases
+                --exclude-filter CtsMediaAudioTestCases[instant]
+                --exclude-filter CtsNotificationTestCases
+                --exclude-filter CtsOsHostTestCases
+                --exclude-filter CtsOsHostTestCases[instant]
+                --exclude-filter CtsPackageInstallTestCases
+                --exclude-filter CtsPackageInstallTestCases[instant]
+                --exclude-filter CtsPackageInstallTestCases[run-on-clone-profile]
+                --exclude-filter CtsPackageInstallTestCases[run-on-secondary-user]
+                --exclude-filter CtsPackageInstallTestCases[run-on-work-profile]
+                --exclude-filter CtsPackageManagerStatsHostTestCases
+                --exclude-filter CtsPhotoPickerTest
+                --exclude-filter CtsPhotoPickerTest[run-on-work-profile]
+                --exclude-filter CtsPhotoPickerTest[run-on-clone-profile]
+                --exclude-filter CtsPhotoPickerTest[run-on-secondary-user]
+                --exclude-filter CtsPreferenceTestCases
+                --exclude-filter CtsPreferenceTestCases[instant]
+                --exclude-filter CtsQuickAccessWalletTestCases
+                --exclude-filter CtsQuickAccessWalletTestCases[instant]
+                --exclude-filter CtsRenderscriptTestCases
+                --exclude-filter CtsRenderscriptTestCases[instant]
+                --exclude-filter CtsRoleTestCases
+                --exclude-filter CtsScopedStorageHostTest
+                --exclude-filter CtsScopedStorageHostTest[instant]
+                --exclude-filter CtsSdkSandboxWebkitTestCases
+                --exclude-filter CtsDevicePolicyTestCases
+                --exclude-filter CtsDevicePolicyTestCases[run-on-clone-profile]
+                --exclude-filter CtsDevicePolicyTestCases[run-on-secondary-user]
+                --exclude-filter CtsDevicePolicyTestCases[run-on-work-profile]
                 --exclude-filter CtsKeystoreWycheproofTestCases
-                --exclude-filter CtsMediaDecoderTestCases
-                --exclude-filter CtsMediaEncoderTestCases
-                --exclude-filter CtsMediaPlayerTestCases
-                --exclude-filter CtsMediaDrmTestCases[instant]
-                --exclude-filter CtsMediaDrmTestCases
-                --exclude-filter CtsMediaBitstreamsTestCases
                 --exclude-filter CtsInstallHostTestCases
                 --exclude-filter CtsContactsProviderTestCases
                 --exclude-filter CtsNetTestCases
@@ -25,7 +76,6 @@
                 --exclude-filter CtsSensorTestCases
                 --exclude-filter CtsScopedStorageDeviceOnlyTest
                 --exclude-filter CtsExtractNativeLibsHostTestCases
-                --exclude-filter CtsMediaProviderTranscodeTests
                 --exclude-filter CtsWebkitTestCases
                 --exclude-filter CtsTextTestCases
                 --exclude-filter CtsPermissionTestCases
@@ -65,10 +115,6 @@
                 --exclude-filter CtsIcu4cTestCases
                 --exclude-filter CtsOsTestCases[instant]
                 --exclude-filter CtsDeqpTestCases
-                --exclude-filter CtsMediaTestCases
-                --exclude-filter CtsMediaTestCases[instant]
-                --exclude-filter CtsMediaV2TestCases
-                --exclude-filter CtsMediaStressTestCases
                 --exclude-filter CtsSecurityTestCases
                 --exclude-filter CtsSecurityTestCases[instant]
                 --exclude-filter CtsAppSecurityHostTestCases
@@ -102,5 +148,52 @@
                 --exclude-filter CtsBackupTestCases
                 --exclude-filter CtsSecurityBulletinHostTestCases
                 --exclude-filter CtsIncrementalInstallHostTestCases
+                --exclude-filter CtsMediaAudioTestCases
+                --exclude-filter CtsMediaBetterTogetherTestCases
+                --exclude-filter CtsMediaBetterTogetherTestCases[instant]
+                --exclude-filter CtsMediaBetterTogetherTestCases[run-on-clone-profile]
+                --exclude-filter CtsMediaBetterTogetherTestCases[run-on-secondary-user]
+                --exclude-filter CtsMediaBetterTogetherTestCases[run-on-work-profile]
+                --exclude-filter CtsMediaBitstreamsTestCases
+                --exclude-filter CtsMediaCodecTestCases
+                --exclude-filter CtsMediaCodecTestCases[instant]
+                --exclude-filter CtsMediaCUJLargeTest
+                --exclude-filter CtsMediaCUJLargeTest[instant]
+                --exclude-filter CtsMediaCUJSmallTest
+                --exclude-filter CtsMediaCUJSmallTest[instant]
+                --exclude-filter CtsMediaDecoderTestCases
+                --exclude-filter CtsMediaDecoderTestCases[instant]
+                --exclude-filter CtsMediaDrmFrameworkTestCases
+                --exclude-filter CtsMediaDrmFrameworkTestCases[instant]
+                --exclude-filter CtsMediaDrmTestCases
+                --exclude-filter CtsMediaDrmTestCases[instant]
+                --exclude-filter CtsMediaEditingTestCases
+                --exclude-filter CtsMediaEditingTestCases[instant]
+                --exclude-filter CtsMediaEncoderTestCases
+                --exclude-filter CtsMediaEncoderTestCases[instant]
+                --exclude-filter CtsMediaExtractorTestCases
+                --exclude-filter CtsMediaExtractorTestCases[instant]
+                --exclude-filter CtsMediaHostTestCases
+                --exclude-filter CtsMediaHostTestCases[instant]
+                --exclude-filter CtsMediaMiscTestCases
+                --exclude-filter CtsMediaMiscTestCases[instant]
+                --exclude-filter CtsMediaMuxerTestCases
+                --exclude-filter CtsMediaMuxerTestCases[instant]
+                --exclude-filter CtsMediaParserHostTestCases
+                --exclude-filter CtsMediaParserHostTestCases[instant]
+                --exclude-filter CtsMediaParserTestCases
+                --exclude-filter CtsMediaPerformanceClassTestCases
+                --exclude-filter CtsMediaPlayerTestCases
+                --exclude-filter CtsMediaPlayerTestCases[instant]
+                --exclude-filter CtsMediaProjectionTestCases
+                --exclude-filter CtsMediaProjectionTestCases[instant]
+                --exclude-filter CtsMediaProviderTranscodeTests
+                --exclude-filter CtsMediaRecorderTestCases
+                --exclude-filter CtsMediaRecorderTestCases[instant]
+                --exclude-filter CtsMediaStressTestCases
+                --exclude-filter CtsMediaTestCases
+                --exclude-filter CtsMediaTestCases[instant]
+                --exclude-filter CtsMediaTranscodingTestCases
+                --exclude-filter CtsMediaV2TestCases
                 --disable-reboot
 {% endblock cts_test_params %}

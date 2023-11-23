@@ -6,7 +6,6 @@
 
 {% block cts_test_params %}cts
                 --include-filter CtsKeystoreTestCases
-                --include-filter CtsWindowManagerDeviceTestCases
                 --include-filter CtsDevicePolicyManagerTestCases
                 --include-filter CtsIdentityTestCases
                 --include-filter CtsJobSchedulerTestCases

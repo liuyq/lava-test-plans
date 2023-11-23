@@ -1,0 +1,8 @@
+{% extends "projects/lkft-android/cts.yaml" %}
+
+{% set test_timeout = 240 %}
+{% set test_name = "cts-CtsDevicePolicyTestCases-v8a" %}
+{% set cts_test_plan = "cts" %}
+
+{% block cts_test_params %}cts --abi arm64-v8a -m CtsDevicePolicyTestCases --disable-reboot
+{% endblock cts_test_params %}
