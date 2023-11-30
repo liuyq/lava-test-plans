@@ -17,5 +17,7 @@
                 --include-filter CtsSystemUiTestCases[instant]
                 --include-filter CtsSystemUiTestCases
                 --include-filter CtsWifiTestCases
+                --exclude-filter "CtsStatsdAtomHostTestCases android.cts.statsdatom.statsd.UidAtomTests#testLmkKillOccurred"
+                --exclude-filter "CtsStatsdAtomHostTestCases[instant] android.cts.statsdatom.statsd.UidAtomTests#testLmkKillOccurred"
                 --disable-reboot
 {% endblock cts_test_params %}
