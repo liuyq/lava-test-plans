@@ -6,6 +6,7 @@
 
 {% block cts_test_params %}cts --abi armeabi-v7a
                 --include-filter CtsMediaAudioTestCases
+                --include-filter CtsMediaAudioTestCases[instant]
                 --include-filter CtsMediaBetterTogetherTestCases
                 --include-filter CtsMediaBetterTogetherTestCases[instant]
                 --include-filter CtsMediaBetterTogetherTestCases[run-on-clone-profile]

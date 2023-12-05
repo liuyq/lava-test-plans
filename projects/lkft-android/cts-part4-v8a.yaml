@@ -34,7 +34,6 @@
                 --include-filter CtsHiddenApiKillswitchWildcardTestCases
                 --include-filter CtsHiddenApiKillswitchWildcardTestCases[instant]
                 --include-filter CtsLocaleManagerTestCases
-                --include-filter CtsMediaAudioTestCases[instant]
                 --include-filter CtsNotificationTestCases
                 --include-filter CtsOsHostTestCases
                 --include-filter CtsOsHostTestCases[instant]
