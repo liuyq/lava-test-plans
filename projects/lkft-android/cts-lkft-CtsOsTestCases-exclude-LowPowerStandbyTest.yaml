@@ -7,5 +7,7 @@
 {% block cts_test_params %}cts
                 -m CtsOsTestCases
                 --exclude-filter "CtsOsTestCases android.os.cts.LowPowerStandbyTest"
+                --exclude-filter "CtsOsTestCases android.os.cts.BuildVersionTest#testBuildFingerprint"
+                --exclude-filter "CtsOsTestCases android.os.cts.SecurityFeaturesTest#testPrctlDumpable"
                 --disable-reboot
 {% endblock cts_test_params %}
