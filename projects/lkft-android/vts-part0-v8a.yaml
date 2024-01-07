@@ -1,0 +1,9 @@
+{% extends "projects/lkft-android/vts.yaml" %}
+
+{% set test_timeout = 360 %}
+{% set test_name = "vts-part0-v8a" %}
+
+{% block vts_test_params %}vts --abi arm64-v8a
+        --exclude-filter FastbootVerifyUserspaceTest
+        --exclude-filter VtsHalAudioV4_0TargetTest
+        --exclude-filter FastbootGetvarUserspaceTest {% endblock vts_test_params %}
