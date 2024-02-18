@@ -3,7 +3,4 @@
 {% set test_timeout = 360 %}
 {% set test_name = "vts-part0-v7a" %}
 
-{% block vts_test_params %}vts --abi armeabi-v7a
-        --exclude-filter FastbootVerifyUserspaceTest
-        --exclude-filter VtsHalAudioV4_0TargetTest
-        --exclude-filter FastbootGetvarUserspaceTest {% endblock vts_test_params %}
+{% block vts_test_params %}vts --abi armeabi-v7a --exclude-filter FastbootVerifyUserspaceTest --exclude-filter VtsHalAudioV4_0TargetTest --exclude-filter FastbootGetvarUserspaceTest {% endblock vts_test_params %}
