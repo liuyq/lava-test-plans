@@ -12,6 +12,9 @@
           params:
             SET_GOVERNOR_POLICY: "false"
             TEST_NAME: {{benchmark_name}}
+{% if SQUAD_UPLOAD_URL is defined %}
+            SQUAD_UPLOAD_URL: "{{SQUAD_UPLOAD_URL}}"
+{% endif %}
 {% if loopcount is defined %}
             LOOPS: {{loopcount}}
 {% else %}

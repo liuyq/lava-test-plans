@@ -15,6 +15,9 @@
         TEST_PATH: "android-cts"
         RESULTS_FORMAT: "aggregated"
         ANDROID_VERSION: "{{ANDROID_VERSION}}"
+{% if SQUAD_UPLOAD_URL is defined %}
+        SQUAD_UPLOAD_URL: "{{SQUAD_UPLOAD_URL}}"
+{% endif %}
 {% if cts_expect_reboot %}
         TEST_REBOOT_EXPECTED: "true"
 {% endif %}
