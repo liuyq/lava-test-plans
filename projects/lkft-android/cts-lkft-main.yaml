@@ -1,0 +1,15 @@
+{% extends "projects/lkft-android/cts.yaml" %}
+
+{% set test_timeout = 480 %}
+{% set test_name = "cts-lkft-main" %}
+{% set cts_test_plan = "cts-lkft" %}
+
+{% block cts_test_params %}cts
+                --include-filter CtsHostsideNetworkTests
+                --include-filter CtsJobSchedulerTestCases
+                --include-filter CtsNetTestCases
+                --include-filter CtsTelecomTestCases
+                --include-filter CtsUsbManagerTestCases
+                --include-filter CtsVcnTestCases
+                --disable-reboot
+{% endblock cts_test_params %}
