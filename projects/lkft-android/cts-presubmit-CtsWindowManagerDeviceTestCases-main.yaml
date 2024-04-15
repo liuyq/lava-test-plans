@@ -1,0 +1,19 @@
+{% extends "projects/lkft-android/cts.yaml" %}
+
+{% set test_timeout = 480 %}
+{% set test_name = "cts-presubmit-CtsWindowManagerDeviceTestCases" %}
+{% set cts_test_plan = "cts-presubmit" %}
+
+{% block cts_test_params %}cts-presubmit
+            --include-filter CtsWindowManagerDeviceActivity
+            --include-filter CtsWindowManagerDeviceAm
+            --include-filter CtsWindowManagerDeviceBackNavigation
+            --include-filter CtsWindowManagerDeviceDisplay
+            --include-filter CtsWindowManagerDeviceKeyguard
+            --include-filter CtsWindowManagerDeviceInsets
+            --include-filter CtsWindowManagerDeviceTaskFragment
+            --include-filter CtsWindowManagerDeviceScvh
+            --include-filter CtsWindowManagerDeviceWindow
+            --include-filter CtsWindowManagerDeviceOther
+            --disable-reboot
+{% endblock cts_test_params %}

@@ -9,5 +9,15 @@
                 --exclude-filter CtsLibcoreOjTestCases
                 --exclude-filter CtsKeystoreTestCases
                 --exclude-filter CtsWindowManagerDeviceTestCases
+                --exclude-filter CtsWindowManagerDeviceActivity
+                --exclude-filter CtsWindowManagerDeviceAm
+                --exclude-filter CtsWindowManagerDeviceBackNavigation
+                --exclude-filter CtsWindowManagerDeviceDisplay
+                --exclude-filter CtsWindowManagerDeviceKeyguard
+                --exclude-filter CtsWindowManagerDeviceInsets
+                --exclude-filter CtsWindowManagerDeviceTaskFragment
+                --exclude-filter CtsWindowManagerDeviceScvh
+                --exclude-filter CtsWindowManagerDeviceWindow
+                --exclude-filter CtsWindowManagerDeviceOther
                 --disable-reboot
 {% endblock cts_test_params %}
