@@ -1,0 +1,18 @@
+{% with test_timeout=15 %}
+{% include "include/test_target.jinja2" %}
+{% endwith %}
+    - from: inline
+      path: u-boot-deploy-images
+      name: u-boot-deploy-images
+      repository:
+        metadata:
+          format: Lava-Test Test Definition 1.0
+          name: mu-boot-deploy-images
+          description: deploy the images to sdcard via u-boot fastboot
+        run:
+          steps:
+          - lava-test-case "fastboot-format-metadata" --shell fastboot format:ext4 metadata
+          - lava-test-case "drop-uboot-boot.img" --shell rm -f /lava-downloads/{{ DOCKER_BOOT_FILE }}
+          - lava-test-case "move-back-sdard-boot.img" --shell cp -uvf /lava-downloads/sdcard-{{ DOCKER_BOOT_FILE }} /lava-downloads/{{ DOCKER_BOOT_FILE }}
+          - lava-test-case "fastboot-flash-sdcard-super" --shell fastboot flash super /lava-downloads/{{ DOCKER_SUPER_FILE }}
+          - lava-test-case "fastboot-flash-sdcard-userdata" --shell fastboot flash userdata /lava-downloads/{{ DOCKER_USERDATA_FILE }}

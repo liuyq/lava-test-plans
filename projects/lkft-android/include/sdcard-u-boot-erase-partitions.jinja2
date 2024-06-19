@@ -1,0 +1,26 @@
+{% with test_timeout=5 %}
+{% include "include/test_target.jinja2" %}
+{% endwith %}
+    - from: inline
+      path: fastboot-uboot
+      name: fastboot-erase-sdcard-partitions
+      repository:
+        metadata:
+          format: Lava-Test Test Definition 1.0
+          name: fastboot-uboot
+          description: erase the sdcard partitions via u-boot fastboot
+        run:
+          steps:
+          - lava-test-case "erase-sdcard-partitions-fastboot-devices" --shell fastboot devices
+          - lava-test-case "erase-sdcard-partitions-boot" --shell fastboot erase boot
+          - lava-test-case "erase-sdcard-partitions-init-boot" --shell fastboot erase init_boot
+          - lava-test-case "erase-sdcard-partitions-vendor-boot" --shell fastboot erase vendor_boot
+          - lava-test-case "erase-sdcard-partitions-modemst1" --shell fastboot erase modemst1
+          - lava-test-case "erase-sdcard-partitions-modemst2" --shell fastboot erase modemst2
+          - lava-test-case "erase-sdcard-partitions-fsg" --shell fastboot erase fsg
+          - lava-test-case "erase-sdcard-partitions-fsc" --shell fastboot erase fsc
+          - lava-test-case "erase-sdcard-partitions-misc" --shell fastboot erase misc
+          - lava-test-case "erase-sdcard-partitions-metadata" --shell fastboot erase metadata
+          - lava-test-case "erase-sdcard-partitions-super" --shell fastboot erase super
+          - lava-test-case "erase-sdcard-partitions-userdata" --shell fastboot erase userdata
+          - lava-test-case "fastboot-reboot" --shell fastboot reboot

@@ -14,6 +14,8 @@
 {% set post_boot_command = false %}
 {% set rootfs = false %}
 
+{% set IMAGE_SUPPORTED_SDCARD = IMAGE_SUPPORTED_SDCARD|default(false) %}
+
 {% set PTABLE_LABEL = PTABLE_LABEL|default("partition:0") %}
 {% set DOCKER_PTABLE_FILE = DOCKER_PTABLE_FILE|default("gpt_both0.bin") %}
 {% set PTABLE_URL = PTABLE_URL|default("https://images.validation.linaro.org/snapshots.linaro.org/96boards/dragonboard845c/linaro/rescue/101/dragonboard-845c-bootloader-ufs-aosp-101/gpt_both0.bin") %}
@@ -24,6 +26,13 @@
 {% set partition_userdata = partition_userdata|default(true) %}
 {% if IMAGE_SUPPORTED_VENDOR_BOOT is defined and IMAGE_SUPPORTED_VENDOR_BOOT == "true" %}
     {% set partition_vendor_boot = true %}
+{% endif%}
+
+
+{% if IMAGE_SUPPORTED_SDCARD %}
+    {% set partition_u_boot = true %}
+    {% set ptable = false %}
+    {% set U_BOOT_URL = U_BOOT_URL|default("https://people.linaro.org/~yongqin.liu/images/db845c/sdcard/u-boot.img") %}
 {% endif%}
 
 {% if TUXSUITE_BAKE_VENDOR_DOWNLOAD_URL is defined %}
@@ -39,6 +48,9 @@
 {% endblock postprocess %}
 
 {% block pre_boot_command %}
+{% if IMAGE_SUPPORTED_SDCARD %}
+{% include PROJECT+"include/sdcard-u-boot-flash-deploy.jinja2" %}
+{% else %}
 {% with test_timeout=5 %}
 {% include "include/test_target.jinja2" %}
 {% endwith %}
@@ -77,4 +89,5 @@
             hdmi
           - lava-test-case "reboot" --shell fastboot reboot
 
+{% endif %}
 {% endblock pre_boot_command %}
