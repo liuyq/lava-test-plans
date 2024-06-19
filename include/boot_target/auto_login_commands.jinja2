@@ -1,5 +1,17 @@
+{% if AUTO_LOGIN_COMMANDS is defined %}
+      login_commands:
+{% if AUTO_LOGIN_COMMANDS is not string and AUTO_LOGIN_COMMANDS is sequence %}
+{% for auto_login_cmd in AUTO_LOGIN_COMMANDS %}
+        - "{{auto_login_cmd}}"
+{% endfor %}
+{% else %}
+        - "{{AUTO_LOGIN_COMMANDS}}"
+{% endif %}
+
+{% else %}
 {% if AUTO_LOGIN_USERNAME != 'root' %}
       login_commands:
         # Become super user to run tests
         - su
+{% endif %}
 {% endif %}
