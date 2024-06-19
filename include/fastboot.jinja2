@@ -24,6 +24,7 @@
 {% set use_docker_image_for_boot = use_docker_image_for_boot|default(false) %}
 
 {# partitions for android jobs #}
+{% set partition_u_boot = partition_u_boot|default(false) %}
 {% set partition_boot_a = partition_boot_a|default(false) %}
 {% set partition_boot_b = partition_boot_b|default(false) %}
 {% set partition_super = partition_super|default(false) %}
@@ -37,6 +38,7 @@
 {% set partition_recovery = partition_recovery|default(false) %}
 {% set partition_userdata = partition_userdata|default(false) %}
 
+{% set partition_u_boot_with_postprocess = partition_u_boot_with_postprocess|default(partition_u_boot) %}
 {% set partition_boot_with_postprocess = partition_boot_with_postprocess|default(boot) %}
 {% set partition_boot_a_with_postprocess = partition_boot_a_with_postprocess|default(partition_boot_a) %}
 {% set partition_boot_b_with_postprocess = partition_boot_b_with_postprocess|default(partition_boot_b) %}
@@ -177,6 +179,10 @@ reboot_to_fastboot: {{ reboot_to_fastboot }}
 {% endif %}
 {% endif %}
 
+{% if partition_u_boot == true and partition_u_boot_with_postprocess == true%}
+      u-boot:
+        url: {{ U_BOOT_URL }}
+{% endif %}
 {% if partition_super == true and partition_super_with_postprocess == true%}
       super:
         url: {{ SUPER_URL }}

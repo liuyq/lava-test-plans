@@ -15,7 +15,10 @@
 {% set use_docker_image_for_boot = use_docker_image_for_boot|default(true) %}
 {% set DEPLOY_TARGET = DEPLOY_TARGET|default("downloads") %}
 
+{% set IMAGE_SUPPORTED_SDCARD = IMAGE_SUPPORTED_SDCARD|default(false) %}
+
 {% set DOCKER_PTABLE_FILE = DOCKER_PTABLE_FILE|default("ptable-linux-8g.img") %}
+{% set DOCKER_U_BOOT_FILE = DOCKER_U_BOOT_FILE|default("u-boot.img") %}
 {% set DOCKER_BOOT_FILE = DOCKER_BOOT_FILE|default("boot.img") %}
 {% set DOCKER_VBMETA_FILE = DOCKER_VBMETA_FILE|default("vbmeta.img") %}
 {% set DOCKER_SUPER_FILE = DOCKER_SUPER_FILE|default("super.img") %}
@@ -49,6 +52,7 @@ secrets:
 {{ super() }}
 
 {% block deploy_fastboot %}
+{% if not IMAGE_SUPPORTED_SDCARD %}
 - deploy:
     timeout:
       minutes: {{ deploy_fastboot_timeout }}
@@ -115,6 +119,7 @@ secrets:
 {% if partition_userdata == true %}
       userdata:
         url: downloads://{{ DOCKER_USERDATA_FILE }}
+{% endif %}
 {% endif %}
 {% endblock deploy_fastboot %}
 {% endblock deploy_target %}

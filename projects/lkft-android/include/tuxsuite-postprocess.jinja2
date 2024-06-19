@@ -40,4 +40,8 @@
             local: true
             steps:
             - linaro-lkft-android.sh -g {{opt_image_gz_url}} {{opt_tuxsuite_download_url}} {{opt_reference_url}} {{opt_reference_url_gsi}} -c {{LKFT_BUILD_CONFIG}} {{opt_build_config_url}}
+{% if IMAGE_SUPPORTED_SDCARD %}
+            - mv -vf /lava-downloads/{{ DOCKER_BOOT_FILE }} /lava-downloads/sdcard-{{ DOCKER_BOOT_FILE }}
+            - cp -uvf /lava-downloads/{{ DOCKER_U_BOOT_FILE }} /lava-downloads/{{DOCKER_BOOT_FILE}}
+{% endif %}
 {% endif %}
