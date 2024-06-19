@@ -6,7 +6,7 @@
 {% set PTABLE_LABEL = "partition:0" %}
 {% set ROOTFS_URL_COMP = ROOTFS_URL_COMP|default("gz") %}
 
-{% set ptable = true %}
+{% set ptable = ptable|default(true) %}
 {% set rootfs_label = 'rootfs' %}
 {% set reboot_reset = true %}
 
