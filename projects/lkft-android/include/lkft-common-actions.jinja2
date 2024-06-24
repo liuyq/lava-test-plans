@@ -33,3 +33,6 @@
             - lava-test-case "android-boot-boot-completed" --shell "while ! adb shell getprop sys.boot_completed|grep 1; do sleep 2; done"
             - lava-test-case "android-boot-set-power-stayon" --shell adb shell su 0 svc power stayon true
             - lava-test-case "android-boot-screencap" --shell adb shell screencap -p /data/local/tmp/screencap.png
+            - lava-test-case "android-boot-fstab" --shell adb shell "su 0 cat /vendor/etc/fstab.*"
+            - lava-test-case "android-boot-kernel-version" --shell adb shell su 0 cat /proc/version
+            - lava-test-case "android-boot-kernel-cmdline" --shell adb shell su 0 cat /proc/cmdline
