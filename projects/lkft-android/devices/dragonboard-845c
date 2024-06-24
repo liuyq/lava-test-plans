@@ -38,7 +38,7 @@
 {% if IMAGE_SUPPORTED_SDCARD %}
     {# hack workaround for boot image specification to avoid docker mount issue #}
     {% set boot = true %}
-    {% set BOOT_URL = DOWNLOAD_URL + "/boot.img.xz" %}
+    {% set BOOT_URL = REFERENCE_BUILD_URL + "/boot.img.xz" %}
     {% set BOOT_URL_COMP = "xz" %}
     {% set partition_boot_with_postprocess = true %}
     {# hack workaround for boot image specification end #}
