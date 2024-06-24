@@ -39,6 +39,9 @@
             image: linaro/lava-android-postprocess:bullseye-2024.03.13-01
             local: true
             steps:
+{% if IMAGE_SUPPORTED_SDCARD %}
+            - rm -vf /lava-downloads/{{ DOCKER_BOOT_FILE }}
+{% endif %}
             - linaro-lkft-android.sh -g {{opt_image_gz_url}} {{opt_tuxsuite_download_url}} {{opt_reference_url}} {{opt_reference_url_gsi}} -c {{LKFT_BUILD_CONFIG}} {{opt_build_config_url}}
 {% if IMAGE_SUPPORTED_SDCARD %}
             - mv -vf /lava-downloads/{{ DOCKER_BOOT_FILE }} /lava-downloads/sdcard-{{ DOCKER_BOOT_FILE }}

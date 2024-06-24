@@ -36,6 +36,13 @@
 {% endif%}
 
 {% if IMAGE_SUPPORTED_SDCARD %}
+    {# hack workaround for boot image specification to avoid docker mount issue #}
+    {% set boot = true %}
+    {% set BOOT_URL = DOWNLOAD_URL + "/boot.img.xz" %}
+    {% set BOOT_URL_COMP = "xz" %}
+    {% set partition_boot_with_postprocess = true %}
+    {# hack workaround for boot image specification end #}
+
     {% set ptable = false %}
     {% set partition_u_boot = true %}
     {% set U_BOOT_URL = U_BOOT_URL|default("https://people.linaro.org/~yongqin.liu/images/db845c/sdcard/u-boot.img") %}
