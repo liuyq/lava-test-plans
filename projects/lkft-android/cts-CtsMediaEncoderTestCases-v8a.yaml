@@ -1,0 +1,8 @@
+{% extends "projects/lkft-android/cts.yaml" %}
+
+{% set test_timeout = 500 %}
+{% set test_name = "cts-CtsMediaEncoderTestCases-v8a" %}
+{% set cts_test_plan = "cts" %}
+
+{% block cts_test_params %}cts --abi arm64-v8a -m CtsMediaEncoderTestCases --disable-reboot
+{% endblock cts_test_params %}

@@ -5,8 +5,6 @@
 {% set cts_test_plan = "cts" %}
 
 {% block cts_test_params %}cts --abi arm64-v8a
-                --include-filter CtsMediaAudioTestCases
-                --include-filter CtsMediaAudioTestCases[instant]
                 --include-filter CtsMediaBetterTogetherTestCases
                 --include-filter CtsMediaBetterTogetherTestCases[instant]
                 --include-filter CtsMediaBetterTogetherTestCases[run-on-clone-profile]
@@ -14,16 +12,10 @@
                 --include-filter CtsMediaBetterTogetherTestCases[run-on-work-profile]
                 --include-filter CtsMediaCodecTestCases
                 --include-filter CtsMediaCodecTestCases[instant]
-                --include-filter CtsMediaCUJSmallTest
-                --include-filter CtsMediaCUJSmallTest[instant]
-                --include-filter CtsMediaDrmFrameworkTestCases
-                --include-filter CtsMediaDrmFrameworkTestCases[instant]
                 --include-filter CtsMediaEditingTestCases
                 --include-filter CtsMediaEditingTestCases[instant]
                 --include-filter CtsMediaExtractorTestCases
                 --include-filter CtsMediaExtractorTestCases[instant]
-                --include-filter CtsMediaHostTestCases
-                --include-filter CtsMediaHostTestCases[instant]
                 --include-filter CtsMediaMuxerTestCases
                 --include-filter CtsMediaMuxerTestCases[instant]
                 --include-filter CtsMediaParserHostTestCases
@@ -34,6 +26,5 @@
                 --include-filter CtsMediaProjectionTestCases[instant]
                 --include-filter CtsMediaRecorderTestCases
                 --include-filter CtsMediaRecorderTestCases[instant]
-                --include-filter CtsMediaTranscodingTestCases
                 --disable-reboot
 {% endblock cts_test_params %}
