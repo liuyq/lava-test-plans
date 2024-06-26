@@ -1,0 +1,13 @@
+{% set PROJECT = PROJECT|default("") %}
+{% extends PROJECT+"fastboot.jinja2" %}
+
+{% set BOOT_OS_PROMPT = BOOT_OS_PROMPT|default("sm8550-hdk:") %}
+{% set DEPLOY_OS = DEPLOY_OS|default("oe") %}
+{% set PTABLE_LABEL = "partition:0" %}
+{% set ROOTFS_URL_COMP = ROOTFS_URL_COMP|default("gz") %}
+
+{% set ptable = ptable|default(true) %}
+{% set rootfs_label = 'rootfs' %}
+{% set reboot_reset = true %}
+
+{% block device_type %}sm8550-hdk{% endblock %}
