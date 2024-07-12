@@ -1,3 +1,5 @@
+{% set set_active_a = set_active_a|default(false) %}
+
 {% with use_docker_image_for_boot=true, TARGET_BOOT_TIMEOUT=15, boot_method="fastboot", auto_login=true, AUTO_LOGIN_PROMPT=U_BOOT_PROMTP_MESSAGE, AUTO_LOGIN_USERNAME="echo", BOOT_OS_PROMPT="=>", AUTO_LOGIN_COMMANDS=["echo", "run gpt_mmc_aosp", "echo =>; reset"] %}
 {% include "include/boot_target/boot_target.jinja2" %}
 {% endwith %}
@@ -5,3 +7,7 @@
     # auto-login-action: Wait for prompt ['Linux version [0-9]'] (timeout 00:15:00)
     parameters:
       kernel-start-message: {{ U_BOOT_PROMTP_MESSAGE }}
+{% if set_active_a is defined and set_active_a %}
+    commands:
+      - set_active a
+{% endif%}

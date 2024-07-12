@@ -40,6 +40,7 @@
     {% set partition_u_boot = true %}
     {% set U_BOOT_URL = U_BOOT_URL|default("https://people.linaro.org/~amit.pundir/sm8x50-userdebug/mmc-sdcard/u-boot-sm8550-hdk-fastboot.img") %}
     {% set U_BOOT_PROMTP_MESSAGE = U_BOOT_PROMTP_MESSAGE | default("Hit any key to stop autoboot") %}
+    {% set set_active_a = true %}
 {% endif%}
 
 {% set download_postprocess_required = true %}
