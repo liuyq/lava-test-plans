@@ -9,7 +9,7 @@
 {% set use_local_docker_image_for_test_target = use_local_docker_image_for_test_target|default(true) %}
 
 {# variables needs to be converted to be used by the root master.jinja2 #}
-{% set LAVA_JOB_PRIORITY = LAVA_JOB_PRIORITY|default("medium") %}
+{% set LAVA_JOB_PRIORITY = LAVA_JOB_PRIORITY|default("50") %}
 
 {########## LAVA JOB DEFINITION ##############}
 {# override the job_name block defined in testcases/master/template-master.jinja2 #}
