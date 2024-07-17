@@ -45,7 +45,7 @@
 
     {% set ptable = false %}
     {% set partition_u_boot = true %}
-    {% set U_BOOT_URL = U_BOOT_URL|default("https://people.linaro.org/~yongqin.liu/images/db845c/sdcard/u-boot.img") %}
+    {% set U_BOOT_URL = U_BOOT_URL|default("https://testdata.linaro.org/lkft/aosp-stable/u-boot/db845c/9f3610307acf/u-boot.img") %}
     {% set U_BOOT_PROMTP_MESSAGE = U_BOOT_PROMTP_MESSAGE | default("Hit any key to stop autoboot") %}
 {% endif%}
 
