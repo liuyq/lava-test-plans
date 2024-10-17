@@ -1,0 +1,6 @@
+{% extends "projects/lkft-android/vts.yaml" %}
+
+{% set test_timeout = 60 %}
+{% set test_name = "vts-kernel-16k" %}
+
+{% block vts_test_params %}vts-kernel --include-filter Vts16KPageSizeTest --include-filter elf_alignment_test{% endblock vts_test_params %}
