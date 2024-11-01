@@ -18,6 +18,11 @@
 {% if SQUAD_UPLOAD_URL is defined %}
         SQUAD_UPLOAD_URL: "{{SQUAD_UPLOAD_URL}}"
 {% endif %}
+{% if INTERNET_ACCESS is defined %}
+        INTERNET_ACCESS:  "{{INTERNET_ACCESS}}"
+{% else %}
+        INTERNET_ACCESS:  "true"
+{% endif %}
 {% if cts_expect_reboot %}
         TEST_REBOOT_EXPECTED: "true"
 {% endif %}
