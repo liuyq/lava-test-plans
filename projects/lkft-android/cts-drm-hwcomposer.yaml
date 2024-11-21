@@ -1,0 +1,12 @@
+{% extends "projects/lkft-android/cts.yaml" %}
+
+{% set test_timeout = 200 %}
+{% set test_name = "cts-drm-hwcomposer" %}
+{% set cts_test_plan = "cts-lkft" %}
+
+{% block cts_test_params %}cts
+                --include-filter CtsDisplayTestCases
+                --include-filter CtsDrmTestCases
+                --include-filter CtsGraphicsTestCases
+                --disable-reboot
+{% endblock cts_test_params %}

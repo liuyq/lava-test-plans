@@ -1,0 +1,11 @@
+{% extends "projects/lkft-android/vts.yaml" %}
+
+{% set test_timeout = 480 %}
+{% set test_name = "vts-drm-hwcomposer" %}
+
+{% block vts_test_params %}vts
+                           --include-filter VtsHalGraphicsMapperV4_0TargetTest
+                           --include-filter VtsHalGraphicsComposer3_TargetTest
+                           --include-filter VtsHalGraphicsMapperV2_1TargetTest
+                           --include-filter VtsHalGraphicsComposerV2_1TargetTest
+{% endblock vts_test_params %}
