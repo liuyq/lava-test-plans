@@ -1,0 +1,17 @@
+{% extends "testcases/master/template-android.jinja2" %}
+
+{% set test_name = test_name|default("kunit") %}
+
+{% block test_target_definitions %}
+{% if TESTS_ZIP_URL is defined %}
+    - repository: {{TEST_DEFINITIONS_REPOSITORY}}
+      from: git
+      path: automated/android/kunit/kunit.yaml
+      params:
+        TESTS_ZIP_URL: "{{TESTS_ZIP_URL}}"
+{% if SQUAD_UPLOAD_URL is defined %}
+        SQUAD_UPLOAD_URL: "{{SQUAD_UPLOAD_URL}}"
+{% endif %}
+      name: "android-kunit"
+{% endif %}
+{% endblock test_target_definitions %}
