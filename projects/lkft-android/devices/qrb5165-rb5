@@ -40,7 +40,7 @@
 
     {% set ptable = false %}
     {% set partition_u_boot = true %}
-    {% set U_BOOT_URL = U_BOOT_URL|default("https://people.linaro.org/~amit.pundir/gbl-lab/db845c-userdebug/u-boot-qrb5165-rb5.img") %}
+    {% set U_BOOT_URL = U_BOOT_URL|default("https://testdata.linaro.org/lkft/aosp-stable/u-boot/rb5/7ad15b8c6bbc/u-boot.img") %}
     {% set U_BOOT_PROMTP_MESSAGE = U_BOOT_PROMTP_MESSAGE | default("Hit any key to stop autoboot") %}
 {% endif%}
 
